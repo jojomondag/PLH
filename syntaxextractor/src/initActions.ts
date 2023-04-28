@@ -1,14 +1,17 @@
 import * as vscode from 'vscode';
+import { extractCodeFilesContent } from './CodeExtractors/ExtractCode';
 
-//This works but you have to open a folder in the test enviroment so you can test it
+export const workspaceFolders = vscode.workspace.workspaceFolders;
 
 export function initialFunction(): void {
-    const workspaceFolders = vscode.workspace.workspaceFolders;
-
     if (workspaceFolders && workspaceFolders.length > 0) {
         const projectPath = workspaceFolders[0].uri.fsPath;
-        console.log(`Current project path: ${projectPath}`);
+        vscode.window.showInformationMessage(`Current project path: ${projectPath}`);
+
+        // Call the extractCodeFilesContent with type .cs
+        extractCodeFilesContent('.cs');
+
     } else {
-        console.log('No workspace folder is currently open.');
+        vscode.window.showInformationMessage('No workspace folder is currently open.');
     }
 }

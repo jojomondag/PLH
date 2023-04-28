@@ -6,22 +6,23 @@ export function activate(context: vscode.ExtensionContext) {
 	const treeDataProvider = new ButtonsTreeDataProvider(context);
 	vscode.window.createTreeView('syntaxExtractorCustomView', { treeDataProvider });
 	
-	// Call the initial function after creating the tree view
-  initialFunction();
-	
 	let disposable1 = vscode.commands.registerCommand('syntaxextractor.button1', () => {
-	  buttonActions.button1();
+    initialFunction();
+    buttonActions.button1();
 	});
   
 	let disposable2 = vscode.commands.registerCommand('syntaxextractor.button2', () => {
-	  buttonActions.button2();
+    initialFunction();
+    buttonActions.button2();
 	});
   
 	let disposable3 = vscode.commands.registerCommand('syntaxextractor.button3', () => {
-	  buttonActions.button3();
+    initialFunction();
+    buttonActions.button3();
 	});
   let disposable4 = vscode.commands.registerCommand('syntaxextractor.button4', () => {
-	  buttonActions.button4();
+    initialFunction();
+    buttonActions.button4();
 	});
   
 	context.subscriptions.push(disposable1, disposable2, disposable3,disposable4);

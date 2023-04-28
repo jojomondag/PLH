@@ -1,12 +1,9 @@
-
 export async function button1() {
   console.log('Button2');
 }
-
 export function button2() {
   console.log('Button2');
 }
-
 export function button3() {
   console.log('Button3');
 }
