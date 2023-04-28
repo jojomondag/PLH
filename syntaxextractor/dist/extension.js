@@ -15,7 +15,7 @@ module.exports = require("vscode");
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.initialFunction = exports.workspaceFolders = void 0;
 const vscode = __webpack_require__(1);
-const ExtractCode_1 = __webpack_require__(7);
+const ExtractCode_1 = __webpack_require__(3);
 exports.workspaceFolders = vscode.workspace.workspaceFolders;
 function initialFunction() {
     if (exports.workspaceFolders && exports.workspaceFolders.length > 0) {
@@ -33,37 +33,59 @@ exports.initialFunction = initialFunction;
 
 /***/ }),
 /* 3 */
-/***/ ((module, exports) => {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.button4 = exports.button3 = exports.button2 = exports.button1 = void 0;
-async function button1() {
-    console.log('Button2');
+exports.extractCodeFilesContent = exports.text = void 0;
+const fs = __webpack_require__(4);
+const path = __webpack_require__(5);
+const vscode = __webpack_require__(1);
+const codeAnalyzer_1 = __webpack_require__(6);
+exports.text = '';
+function extractCodeFilesContent(fileType) {
+    const cSharpFiles = (0, codeAnalyzer_1.getAllCodeFilesOfType)(fileType);
+    let combinedContent = '';
+    for (const filePath of cSharpFiles) {
+        const fileContent = fs.readFileSync(filePath, 'utf-8');
+        console.log(`Processing file: ${filePath}`); // Log the file path
+        console.log(`File content length: ${fileContent.length}`); // Log the content size
+        combinedContent += fileContent + '\n';
+    }
+    // Add the list of .cs files at the end of the combined content
+    combinedContent += '\n\nLoaded .cs files:\n';
+    for (const filePath of cSharpFiles) {
+        combinedContent += filePath + '\n';
+    }
+    exports.text = combinedContent;
+    // Save the combined content to a text file in the syntaxExtractorText folder
+    const workspaceFolder = vscode.workspace.workspaceFolders[0].uri.fsPath;
+    const outputPath = path.join(workspaceFolder, 'syntaxExtractorText');
+    // Ensure the syntaxExtractorText folder exists
+    fs.mkdirSync(outputPath, { recursive: true });
+    // Get the current date and time as a formatted string
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}_${currentDate.getHours().toString().padStart(2, '0')}-${currentDate.getMinutes().toString().padStart(2, '0')}-${currentDate.getSeconds().toString().padStart(2, '0')}`;
+    const outputFile = path.join(outputPath, `CSharpContent_${formattedDate}.txt`);
+    fs.writeFileSync(outputFile, combinedContent, { encoding: 'utf-8' });
 }
-exports.button1 = button1;
-function button2() {
-    console.log('Button2');
-}
-exports.button2 = button2;
-function button3() {
-    console.log('Button3');
-}
-exports.button3 = button3;
-function button4() {
-    console.log('Button3');
-}
-exports.button4 = button4;
-module.exports = {
-    button1,
-    button2,
-    button3,
-    button4,
-};
+exports.extractCodeFilesContent = extractCodeFilesContent;
 
 
 /***/ }),
 /* 4 */
+/***/ ((module) => {
+
+module.exports = require("fs");
+
+/***/ }),
+/* 5 */
+/***/ ((module) => {
+
+module.exports = require("path");
+
+/***/ }),
+/* 6 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -72,7 +94,7 @@ exports.getAllCodeFilesOfType = void 0;
 const vscode = __webpack_require__(1);
 const initActions_1 = __webpack_require__(2);
 const path = __webpack_require__(5);
-const fs = __webpack_require__(6);
+const fs = __webpack_require__(4);
 function printFilenames(fileList) {
     for (const file of fileList) {
         console.log(path.basename(file));
@@ -113,56 +135,34 @@ exports.getAllCodeFilesOfType = getAllCodeFilesOfType;
 
 
 /***/ }),
-/* 5 */
-/***/ ((module) => {
-
-module.exports = require("path");
-
-/***/ }),
-/* 6 */
-/***/ ((module) => {
-
-module.exports = require("fs");
-
-/***/ }),
 /* 7 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((module, exports) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.extractCodeFilesContent = exports.text = void 0;
-const fs = __webpack_require__(6);
-const path = __webpack_require__(5);
-const vscode = __webpack_require__(1);
-const codeAnalyzer_1 = __webpack_require__(4);
-exports.text = '';
-function extractCodeFilesContent(fileType) {
-    const cSharpFiles = (0, codeAnalyzer_1.getAllCodeFilesOfType)(fileType);
-    let combinedContent = '';
-    for (const filePath of cSharpFiles) {
-        const fileContent = fs.readFileSync(filePath, 'utf-8');
-        console.log(`Processing file: ${filePath}`); // Log the file path
-        console.log(`File content length: ${fileContent.length}`); // Log the content size
-        combinedContent += fileContent + '\n';
-    }
-    // Add the list of .cs files at the end of the combined content
-    combinedContent += '\n\nLoaded .cs files:\n';
-    for (const filePath of cSharpFiles) {
-        combinedContent += filePath + '\n';
-    }
-    exports.text = combinedContent;
-    // Save the combined content to a text file in the syntaxExtractorText folder
-    const workspaceFolder = vscode.workspace.workspaceFolders[0].uri.fsPath;
-    const outputPath = path.join(workspaceFolder, 'syntaxExtractorText');
-    // Ensure the syntaxExtractorText folder exists
-    fs.mkdirSync(outputPath, { recursive: true });
-    // Get the current date and time as a formatted string
-    const currentDate = new Date();
-    const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}_${currentDate.getHours().toString().padStart(2, '0')}-${currentDate.getMinutes().toString().padStart(2, '0')}-${currentDate.getSeconds().toString().padStart(2, '0')}`;
-    const outputFile = path.join(outputPath, `CSharpContent_${formattedDate}.txt`);
-    fs.writeFileSync(outputFile, combinedContent, { encoding: 'utf-8' });
+exports.button4 = exports.button3 = exports.button2 = exports.button1 = void 0;
+async function button1() {
+    console.log('Button2');
 }
-exports.extractCodeFilesContent = extractCodeFilesContent;
+exports.button1 = button1;
+function button2() {
+    console.log('Button2');
+}
+exports.button2 = button2;
+function button3() {
+    console.log('Button3');
+}
+exports.button3 = button3;
+function button4() {
+    console.log('Button3');
+}
+exports.button4 = button4;
+module.exports = {
+    button1,
+    button2,
+    button3,
+    button4,
+};
 
 
 /***/ })
@@ -202,7 +202,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.deactivate = exports.activate = void 0;
 const vscode = __webpack_require__(1);
 const initActions_1 = __webpack_require__(2);
-const buttonActions = __webpack_require__(3);
+const buttonActions = __webpack_require__(7);
 function activate(context) {
     const treeDataProvider = new ButtonsTreeDataProvider(context);
     vscode.window.createTreeView('syntaxExtractorCustomView', { treeDataProvider });
