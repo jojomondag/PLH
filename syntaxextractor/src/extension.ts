@@ -1,27 +1,22 @@
 import * as vscode from 'vscode';
-import { initialFunction } from './initActions';
 import * as buttonActions from './buttonActions';
+import * as init from './initActions';
 
 export function activate(context: vscode.ExtensionContext) {
+
 	const treeDataProvider = new ButtonsTreeDataProvider(context);
 	vscode.window.createTreeView('syntaxExtractorCustomView', { treeDataProvider });
-	
+	init.initialFunction();
 	let disposable1 = vscode.commands.registerCommand('syntaxextractor.button1', () => {
-    initialFunction();
     buttonActions.button1();
 	});
-  
 	let disposable2 = vscode.commands.registerCommand('syntaxextractor.button2', () => {
-    initialFunction();
     buttonActions.button2();
 	});
-  
 	let disposable3 = vscode.commands.registerCommand('syntaxextractor.button3', () => {
-    initialFunction();
     buttonActions.button3();
 	});
   let disposable4 = vscode.commands.registerCommand('syntaxextractor.button4', () => {
-    initialFunction();
     buttonActions.button4();
 	});
   
