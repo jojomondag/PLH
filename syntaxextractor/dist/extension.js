@@ -45,28 +45,35 @@ module.exports = {
 
 /***/ }),
 /* 3 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.cleanUpCSharpFiles = void 0;
 const ec = __webpack_require__(4);
 const vscode = __webpack_require__(1);
+const roslynSyntaxExtractor = __webpack_require__(9);
 async function cleanUpCSharpFiles(option) {
     let cleanedUpContent = '';
     if (option === "1. Function names only") {
         vscode.window.showInformationMessage("We will clean up the C# files in the project to only include function names.");
+        //The extractCodeContent function returns a string with the content of all the files in the currently opened Project.
         const file = ec.extractCodeContent('.cs', option);
         vscode.window.showInformationMessage("we will extract this " + file);
-        //implement the extracion logic here.
+        // Extract method names using RoslynSyntaxExtractor
+        cleanedUpContent = roslynSyntaxExtractor.Start(1, file);
+        vscode.window.showInformationMessage("Cleaned up content: " + cleanedUpContent);
         // Save the cleaned up content to a file
         const fileName = option + `${ec.getCurrentDateTimeString()}_CleanedUpCodeContent.txt`;
         ec.saveContentToFile(cleanedUpContent, fileName);
         // Also copy to clipboard
-        ec.copyToClipboard(cleanedUpContent + " fefefefe");
+        ec.copyToClipboard(cleanedUpContent);
     }
 }
 exports.cleanUpCSharpFiles = cleanUpCSharpFiles;
+module.exports = {
+    cleanUpCSharpFiles
+};
 
 
 /***/ }),
@@ -261,6 +268,13 @@ function initialFunction() {
     }
 }
 exports.initialFunction = initialFunction;
+
+
+/***/ }),
+/* 9 */
+/***/ (() => {
+
+
 
 
 /***/ })

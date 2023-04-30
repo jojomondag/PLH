@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { extractCodeContent } from './CodeExtractors/ExtractCode';
+import { extractCodeContent } from './ExtractCode';
 
 export const workspaceFolders = vscode.workspace.workspaceFolders;
 

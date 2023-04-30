@@ -9,7 +9,7 @@ function initialFunction() {
         const projectPath = exports.workspaceFolders[0].uri.fsPath;
         vscode.window.showInformationMessage(`Current project path: ${projectPath}`);
         // Call the extractCodeFilesContent with type .cs
-        (0, ExtractCode_1.extractCodeFilesContent)('.cs');
+        (0, ExtractCode_1.extractCodeContent)('.cs', "Project_Session_Start_Snapshot");
     }
     else {
         vscode.window.showInformationMessage('No workspace folder is currently open.');

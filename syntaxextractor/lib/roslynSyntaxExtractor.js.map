@@ -1,0 +1,1 @@
+{"version":3,"file":"roslynSyntaxExtractor.js","sourceRoot":"","sources":["roslynSyntaxExtractor.ts"],"names":[],"mappings":";;AAAA,gCAAgC;AAEhC,MAAM,qBAAqB,GAAG,IAAI,CAAC,IAAI,CAAC;IACtC,YAAY,EAAE,SAAS,GAAG,4BAA4B;IACtD,QAAQ,EAAE,6CAA6C;IACvD,UAAU,EAAE,OAAO;CACpB,CAAC,CAAC;AAEH,kBAAe,qBAAqB,CAAC"}

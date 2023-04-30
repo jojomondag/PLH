@@ -1,4 +1,4 @@
-import { cleanUpCSharpFiles } from './CodeExtractors/Cleanup';
+import { cleanUpCSharpFiles } from './Cleanup';
 
 export async function button1() {
   console.log('Button1');

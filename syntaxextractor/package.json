@@ -44,6 +44,7 @@
     }
   },
   "scripts": {
+    "build": "tsc",
     "vscode:prepublish": "npm run package",
     "compile": "webpack",
     "watch": "webpack --watch",
@@ -72,6 +73,7 @@
     "webpack-cli": "^5.0.1"
   },
   "dependencies": {
+    "edge-js": "^19.3.0",
     "omnisharp-client": "^3.2.0",
     "vscode-languageclient": "^8.1.0",
     "vscode-languageserver-protocol": "^3.17.3",
