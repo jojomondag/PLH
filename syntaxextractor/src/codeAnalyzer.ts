@@ -3,11 +3,6 @@ import { workspaceFolders } from './initActions';
 import * as path from 'path';
 import * as fs from 'fs';
 
-function printFilenames(fileList: string[]): void {
-    for (const file of fileList) {
-        console.log(path.basename(file));
-    }
-}
 export function getAllCodeFilesOfType(fileType: string): string[] {
     if (workspaceFolders && workspaceFolders.length > 0) {
         const projectPath = workspaceFolders[0].uri.fsPath;

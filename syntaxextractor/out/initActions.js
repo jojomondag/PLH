@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.initialFunction = exports.workspaceFolders = void 0;
 const vscode = require("vscode");
-const ExtractCode_1 = require("./CodeExtractors/ExtractCode");
+const ExtractCode_1 = require("./ExtractCode");
 exports.workspaceFolders = vscode.workspace.workspaceFolders;
 function initialFunction() {
     if (exports.workspaceFolders && exports.workspaceFolders.length > 0) {

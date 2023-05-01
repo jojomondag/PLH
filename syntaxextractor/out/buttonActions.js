@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.button4 = exports.button3 = exports.button2 = exports.button1 = void 0;
-const Cleanup_1 = require("./CodeExtractors/Cleanup");
+const Cleanup_1 = require("./Cleanup");
 async function button1() {
     console.log('Button1');
     (0, Cleanup_1.cleanUpCSharpFiles)('1. Function names only'); // call decideAction with the corresponding parameter

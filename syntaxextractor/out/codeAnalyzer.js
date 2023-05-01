@@ -5,11 +5,6 @@ const vscode = require("vscode");
 const initActions_1 = require("./initActions");
 const path = require("path");
 const fs = require("fs");
-function printFilenames(fileList) {
-    for (const file of fileList) {
-        console.log(path.basename(file));
-    }
-}
 function getAllCodeFilesOfType(fileType) {
     if (initActions_1.workspaceFolders && initActions_1.workspaceFolders.length > 0) {
         const projectPath = initActions_1.workspaceFolders[0].uri.fsPath;

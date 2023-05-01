@@ -1,18 +1,21 @@
 const ec = require('./ExtractCode');
 const vscode = require('vscode');
-const roslynSyntaxExtractor = require('../lib/roslynSyntaxExtractor');
+const omnisharpClient = require('omnisharp-client');
 
 export async function cleanUpCSharpFiles(option: string) {
     let cleanedUpContent = '';
   
     if (option === "1. Function names only") {
-      vscode.window.showInformationMessage("We will clean up the C# files in the project to only include function names.");
+      vscode.window.showInformationMessage("Josef We will clean up the C# files in the project to only include function names.");
       //The extractCodeContent function returns a string with the content of all the files in the currently opened Project.
       const file = ec.extractCodeContent('.cs', option);
       vscode.window.showInformationMessage("we will extract this " + file);
   
-      // Extract method names using RoslynSyntaxExtractor
-      cleanedUpContent = roslynSyntaxExtractor.Start(1, file);
+      // Extract method names using OmniSharp
+      const client = new omnisharpClient.OmnisharpClient();
+      const response = await client.codeStructure({ fileName: file });
+      vscode.window.showInformationMessage("THIITHITHIEHTIHEITHEI response " + response);
+
       vscode.window.showInformationMessage("Cleaned up content: " + cleanedUpContent);
   
       // Save the cleaned up content to a file
