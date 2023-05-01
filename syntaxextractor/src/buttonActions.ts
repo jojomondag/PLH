@@ -1,24 +1,24 @@
+import { MyCodeLensProvider } from './MyCodeLensProvider';
 import { cleanUpCSharpFiles } from './Cleanup';
 
-export async function button1() {
+const codeLensProvider = new MyCodeLensProvider();
+
+export async function button1(command : string, codeLensProvider: MyCodeLensProvider) {
   console.log('Button1');
-  cleanUpCSharpFiles('1. Function names only'); // call decideAction with the corresponding parameter
+  cleanUpCSharpFiles(command, codeLensProvider);
 }
-export async function button2() {
+
+export async function button2(codeLensProvider: MyCodeLensProvider) {
   console.log('Button2');
-  cleanUpCSharpFiles('2. Function names and parameters'); // call decideAction with the corresponding parameter
+  cleanUpCSharpFiles('2. Function names and parameters', codeLensProvider);
 }
-export async function button3() {
+
+export async function button3(codeLensProvider: MyCodeLensProvider) {
   console.log('Button3');
-  cleanUpCSharpFiles('3. Function names, parameters, and return types'); // call decideAction with the corresponding parameter
+  cleanUpCSharpFiles('3. Function names, parameters, and return types', codeLensProvider);
 }
-export async function button4() {
+
+export async function button4(codeLensProvider: MyCodeLensProvider) {
   console.log('Button4');
-  cleanUpCSharpFiles('4. Access modifiers, static keyword, function names, parameters, and return types'); // call decideAction with the corresponding parameter
+  cleanUpCSharpFiles('4. Access modifiers, static keyword, function names, parameters, and return types', codeLensProvider);
 }
-module.exports = {
-  button1,
-  button2,
-  button3,
-  button4,
-};

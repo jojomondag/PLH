@@ -4,26 +4,26 @@ exports.deactivate = exports.activate = void 0;
 const vscode = require("vscode");
 const buttonActions = require("./buttonActions");
 const init = require("./initActions");
+const MyCodeLensProvider_1 = require("./MyCodeLensProvider");
 function activate(context) {
     init.initialFunction();
-    // Create a new instance of the ButtonsTreeDataProvider
+    const selector = { language: 'csharp', scheme: 'file' };
+    const codeLensProvider = new MyCodeLensProvider_1.MyCodeLensProvider();
+    const codeLensProviderDisposable = vscode.languages.registerCodeLensProvider(selector, codeLensProvider);
+    context.subscriptions.push(codeLensProviderDisposable);
     const buttonsDataProvider = new ButtonsTreeDataProvider();
-    // Create a new TreeView for the ButtonsTreeDataProvider
-    const buttonsTreeView = vscode.window.createTreeView('syntaxExtractorCustomView', {
-        treeDataProvider: buttonsDataProvider
-    });
-    // Register the command for each button
+    const buttonsTreeView = vscode.window.createTreeView('syntaxExtractorCustomView', { treeDataProvider: buttonsDataProvider });
     const disposable1 = vscode.commands.registerCommand('syntaxextractor.button1', () => {
-        buttonActions.button1();
+        buttonActions.button1('1. Function names only', codeLensProvider);
     });
     const disposable2 = vscode.commands.registerCommand('syntaxextractor.button2', () => {
-        buttonActions.button2();
+        buttonActions.button2(codeLensProvider);
     });
     const disposable3 = vscode.commands.registerCommand('syntaxextractor.button3', () => {
-        buttonActions.button3();
+        buttonActions.button3(codeLensProvider);
     });
     const disposable4 = vscode.commands.registerCommand('syntaxextractor.button4', () => {
-        buttonActions.button4();
+        buttonActions.button4(codeLensProvider);
     });
     context.subscriptions.push(disposable1, disposable2, disposable3, disposable4);
 }

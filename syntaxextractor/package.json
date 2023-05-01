@@ -84,7 +84,7 @@
     "csharp": "^0.0.1",
     "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.1",
-    "omnisharp-client": "^3.2.0",
+    "omnisharp-client": "^3.5.0",
     "style-loader": "^3.3.2",
     "vscode-languageclient": "^8.1.0",
     "vscode-languageserver-protocol": "^3.17.3",

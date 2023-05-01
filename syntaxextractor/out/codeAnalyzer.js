@@ -8,27 +8,24 @@ const fs = require("fs");
 function getAllCodeFilesOfType(fileType) {
     if (initActions_1.workspaceFolders && initActions_1.workspaceFolders.length > 0) {
         const projectPath = initActions_1.workspaceFolders[0].uri.fsPath;
-        const parentProjectPath = path.dirname(projectPath);
-        //Create a list to hold all text/code files in the parent project folder and its subdirectories
+        // Create a list to hold all text/code files in the parent project folder and its subdirectories
         let fileList = [];
-        //Loop through all files in the parent project folder and its subdirectories
         const walk = (dir) => {
             const files = fs.readdirSync(dir);
             for (const file of files) {
                 const filePath = path.join(dir, file);
                 const stat = fs.statSync(filePath);
-                if (stat.isDirectory()) {
+                if (stat.isDirectory() && !filePath.includes('node_modules') && filePath !== projectPath) {
                     walk(filePath);
                 }
                 else {
-                    //Check if the file is a text/code file of the specified type
                     if (filePath.endsWith(fileType)) {
                         fileList.push(filePath);
                     }
                 }
             }
         };
-        walk(parentProjectPath);
+        walk(projectPath);
         return fileList;
     }
     else {
@@ -42,26 +39,26 @@ function loadAllTextFiles() {
     if (initActions_1.workspaceFolders && initActions_1.workspaceFolders.length > 0) {
         const projectPath = initActions_1.workspaceFolders[0].uri.fsPath;
         const textFolderPath = path.join(projectPath, 'syntaxExtractorText');
-        //Create a list to hold all text/code files in the parent project folder and its subdirectories
+        // Create a list to hold all text/code files in the parent project folder and its subdirectories
         let fileList = [];
-        //Loop through all files in the parent project folder and its subdirectories
-        const walk = (dir) => {
+        // Loop through all files in the syntaxExtractorText folder and its subdirectories
+        const walk = (dir, parentProjectPath, fileType) => {
             const files = fs.readdirSync(dir);
             for (const file of files) {
                 const filePath = path.join(dir, file);
                 const stat = fs.statSync(filePath);
-                if (stat.isDirectory()) {
-                    walk(filePath);
+                if (stat.isDirectory() && !filePath.includes('node_modules') && filePath !== parentProjectPath) {
+                    walk(filePath, parentProjectPath, fileType);
                 }
                 else {
-                    //Check if the file is a text/code file of the specified type
+                    // Check if the file is a text/code file of the specified type
                     if (filePath.endsWith('.txt')) {
                         fileList.push(filePath);
                     }
                 }
             }
         };
-        walk(textFolderPath);
+        walk(textFolderPath, projectPath, '.txt');
         return fileList;
     }
     else {
