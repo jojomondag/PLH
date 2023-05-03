@@ -14,6 +14,12 @@ namespace SynEx
     {
         public const string SynExString = "d309f791-903f-11d0-9efc-00a0c911004f";
         public static Guid SynEx = new Guid(SynExString);
+
+        public const string guidSynExPackageCmdSetString = "924599ce-e991-459e-becd-2d2b29abd238";
+        public static Guid guidSynExPackageCmdSet = new Guid(guidSynExPackageCmdSetString);
+
+        public const string guidImagesString = "445fd698-8c2c-45d7-9c14-b1cc1e9f4ed0";
+        public static Guid guidImages = new Guid(guidImagesString);
     }
     /// <summary>
     /// Helper class that encapsulates all CommandIDs uses across VS Package.
@@ -23,5 +29,12 @@ namespace SynEx
         public const int IDM_VS_MENU_EXTENSIONS = 0x0091;
         public const int MyMenuGroup = 0x0001;
         public const int MyCommand = 0x0100;
+        public const int cmdidSynExMainWindowCommand = 0x0100;
+        public const int bmpPic1 = 0x0001;
+        public const int bmpPic2 = 0x0002;
+        public const int bmpPicSearch = 0x0003;
+        public const int bmpPicX = 0x0004;
+        public const int bmpPicArrows = 0x0005;
+        public const int bmpPicStrikethrough = 0x0006;
     }
 }

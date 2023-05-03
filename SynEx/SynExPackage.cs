@@ -11,11 +11,13 @@ namespace SynEx
     [InstalledProductRegistration(Vsix.Name, Vsix.Description, Vsix.Version)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [Guid(PackageGuids.SynExString)]
+    [ProvideToolWindow(typeof(SynExMainWindow))]
     public sealed class SynExPackage : ToolkitPackage
     {
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             await this.RegisterCommandsAsync();
+            await SynExMainWindowCommand.InitializeAsync(this);
         }
     }
 }

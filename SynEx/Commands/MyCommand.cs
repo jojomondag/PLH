@@ -1,11 +1,13 @@
-﻿namespace SynEx
+﻿using System.ComponentModel.Design;
+
+namespace SynEx
 {
     [Command(PackageIds.MyCommand)]
     internal sealed class MyCommand : BaseCommand<MyCommand>
     {
         protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)
         {
-            await VS.MessageBox.ShowWarningAsync("SynEx", "Button clicked");
+            await SynExMainWindowCommand.Instance.ExecuteAsync();
         }
     }
 }
