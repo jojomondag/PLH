@@ -4,6 +4,7 @@ global using System;
 global using Task = System.Threading.Tasks.Task;
 using System.Runtime.InteropServices;
 using System.Threading;
+using SynEx.Data; // Add this line to import the DataManager namespace
 
 namespace SynEx
 {
