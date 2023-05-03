@@ -46,6 +46,7 @@
     <CopyVsixExtensionFiles>False</CopyVsixExtensionFiles>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Data\ClipboardManager.cs" />
     <Compile Include="Data\DataManager.cs" />
     <Compile Include="Logic\CodeExtractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

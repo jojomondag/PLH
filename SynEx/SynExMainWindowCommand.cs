@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel.Design;
-using Microsoft.VisualStudio.Shell;
+﻿using System.ComponentModel.Design;
 
 namespace SynEx
 {
