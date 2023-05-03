@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="SynEx.44faf2c5-9963-4251-a8a6-404b7be87ba2" Version="1.0" Language="en-US" Publisher="Josef Nobach" />
+        <Identity Id="SynEx.070df596-5524-4fef-be58-904341eeea24" Version="1.0" Language="en-US" Publisher="Josef Nobach" />
         <DisplayName>SynEx</DisplayName>
-        <Description xml:space="preserve">SyntaxExtractor will Extract your Syntax.</Description>
+        <Description xml:space="preserve">Syntax Extractor Helps you Extract your code.</Description>
         <Icon>Resources\Icon.png</Icon>
         <PreviewImage>Resources\Icon.png</PreviewImage>
     </Metadata>
@@ -12,14 +12,10 @@
             <ProductArchitecture>amd64</ProductArchitecture>
         </InstallationTarget>
     </Installation>
-    <Dependencies>
-        <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
-    </Dependencies>
     <Prerequisites>
-        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.0,18.0)" DisplayName="Visual Studio core editor" />
+        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.0,)" DisplayName="Visual Studio core editor" />
     </Prerequisites>
     <Assets>
         <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
-        <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" />
     </Assets>
 </PackageManifest>

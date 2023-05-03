@@ -14,39 +14,44 @@
         "outputPath": "C:\\Users\\Josef\\Documents\\GitHub\\PLH\\SynEx\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Josef\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net472"
+          "net48"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net472": {
+          "net48": {
             "projectReferences": {}
           }
         }
       },
       "frameworks": {
-        "net472": {
+        "net48": {
           "dependencies": {
             "Community.VisualStudio.Toolkit.17": {
+              "include": "Compile, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "target": "Package",
-              "version": "[17.0.492, )"
+              "version": "[17.0.430, )"
+            },
+            "Community.VisualStudio.VSCT": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[16.0.29.6, )"
             },
             "Microsoft.VSSDK.BuildTools": {
               "target": "Package",
-              "version": "[17.5.4074, )",
+              "version": "[17.0.5232, )",
               "generatePathProperty": true
-            },
-            "Microsoft.VisualStudio.SDK": {
-              "include": "Compile, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "target": "Package",
-              "version": "[17.0.32112.339, )"
             }
           }
         }
