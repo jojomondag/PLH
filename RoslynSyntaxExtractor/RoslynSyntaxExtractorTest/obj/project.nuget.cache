@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "YHvGHY2C0cvBd027mSpT5pFMY+ukkLXOCG//Es5EC3gYWniiv4QMxQAP8VWewku8qirUxfGglWhH41N2i2foDA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Josef\\Documents\\GitHub\\PLH\\RoslynSyntaxExtractor\\RoslynSyntaxExtractorTest\\RoslynSyntaxExtractorTest.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Josef\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.3\\microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",
+    "C:\\Users\\Josef\\.nuget\\packages\\microsoft.codeanalysis.common\\4.5.0\\microsoft.codeanalysis.common.4.5.0.nupkg.sha512",
+    "C:\\Users\\Josef\\.nuget\\packages\\microsoft.codeanalysis.csharp\\4.5.0\\microsoft.codeanalysis.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\Josef\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
+    "C:\\Users\\Josef\\.nuget\\packages\\system.reflection.metadata\\6.0.1\\system.reflection.metadata.6.0.1.nupkg.sha512",
+    "C:\\Users\\Josef\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\Josef\\.nuget\\packages\\system.text.encoding.codepages\\6.0.0\\system.text.encoding.codepages.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
