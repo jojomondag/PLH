@@ -94,7 +94,7 @@ namespace SynEx
             VsShellUtilities.ShowMessageBox(
                 this.package,
                 message,
-                title,
+                title,  
                 OLEMSGICON.OLEMSGICON_INFO,
                 OLEMSGBUTTON.OLEMSGBUTTON_OK,
                 OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);

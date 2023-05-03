@@ -2,7 +2,9 @@
   <Metadata>
     <Identity Id="SynEx.44faf2c5-9963-4251-a8a6-404b7be87ba2" Version="1.0" Language="en-US" Publisher="Josef Nobach" />
     <DisplayName>SynEx</DisplayName>
-    <Description>Empty VSIX Project.</Description>
+    <Description xml:space="preserve">SyntaxExtractor will Extract your Syntax.</Description>
+    <Icon>Resources\Icon.png</Icon>
+    <PreviewImage>Resources\Icon.png</PreviewImage>
   </Metadata>
   <Installation>
     <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
@@ -17,5 +19,6 @@
   </Prerequisites>
   <Assets>
     <Asset Type="Microsoft.VisualStudio.VsPackage" Path="SynEx.pkgdef" />
+    <Asset Type="Microsoft.VisualStudio.MefComponent" Path="SynEx.dll" />
   </Assets>
 </PackageManifest>

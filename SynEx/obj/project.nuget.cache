@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "pcfvNqlaTVp9dKdqCdCaqEjV9TWVLhfXieqxpeF6bsgEMPuuB6Y5vNyWCVM6XnuEiZGos2/HNTrE8kf+OjEWJA==",
+  "dgSpecHash": "EcfFfZ7eZtVc4sNfHHfGtj7EPpdwPm7xdWbfitgnLmGDDhFkuRLL/BA7NTzS+meeMXFC2iPtADpv/qAx7Aa6gw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Josef\\Documents\\GitHub\\PLH\\SynEx\\SynEx.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Josef\\.nuget\\packages\\community.visualstudio.toolkit.17\\17.0.492\\community.visualstudio.toolkit.17.17.0.492.nupkg.sha512",
     "C:\\Users\\Josef\\.nuget\\packages\\envdte\\17.0.32112.339\\envdte.17.0.32112.339.nupkg.sha512",
     "C:\\Users\\Josef\\.nuget\\packages\\envdte100\\17.0.32112.339\\envdte100.17.0.32112.339.nupkg.sha512",
     "C:\\Users\\Josef\\.nuget\\packages\\envdte80\\17.0.32112.339\\envdte80.17.0.32112.339.nupkg.sha512",

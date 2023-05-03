@@ -16,6 +16,7 @@
     <Import Project="$(NuGetPackageRoot)microsoft.vssdk.compatibilityanalyzer\17.5.4074\build\Microsoft.VsSDK.CompatibilityAnalyzer.props" Condition="Exists('$(NuGetPackageRoot)microsoft.vssdk.compatibilityanalyzer\17.5.4074\build\Microsoft.VsSDK.CompatibilityAnalyzer.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.codeanalysis.bannedapianalyzers\3.3.2\build\Microsoft.CodeAnalysis.BannedApiAnalyzers.props" Condition="Exists('$(NuGetPackageRoot)microsoft.codeanalysis.bannedapianalyzers\3.3.2\build\Microsoft.CodeAnalysis.BannedApiAnalyzers.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.vssdk.buildtools\17.5.4074\build\Microsoft.VSSDK.BuildTools.props" Condition="Exists('$(NuGetPackageRoot)microsoft.vssdk.buildtools\17.5.4074\build\Microsoft.VSSDK.BuildTools.props')" />
+    <Import Project="$(NuGetPackageRoot)community.visualstudio.toolkit.17\17.0.492\build\Community.VisualStudio.Toolkit.17.props" Condition="Exists('$(NuGetPackageRoot)community.visualstudio.toolkit.17\17.0.492\build\Community.VisualStudio.Toolkit.17.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgMicrosoft_VisualStudio_Threading_Analyzers Condition=" '$(PkgMicrosoft_VisualStudio_Threading_Analyzers)' == '' ">C:\Users\Josef\.nuget\packages\microsoft.visualstudio.threading.analyzers\17.0.64</PkgMicrosoft_VisualStudio_Threading_Analyzers>

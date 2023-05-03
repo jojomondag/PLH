@@ -34,9 +34,14 @@
       "frameworks": {
         "net472": {
           "dependencies": {
+            "Community.VisualStudio.Toolkit.17": {
+              "target": "Package",
+              "version": "[17.0.492, )"
+            },
             "Microsoft.VSSDK.BuildTools": {
               "target": "Package",
-              "version": "[17.5.4074, )"
+              "version": "[17.5.4074, )",
+              "generatePathProperty": true
             },
             "Microsoft.VisualStudio.SDK": {
               "include": "Compile, Build, Native, ContentFiles, Analyzers, BuildTransitive",
