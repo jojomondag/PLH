@@ -26,7 +26,7 @@ namespace SynEx.Logic
 
         private static List<string> ProcessFiles(List<string> csFiles, Func<SyntaxNode, IEnumerable<string>> syntaxProcessor)
         {
-            List<string> extractedData = new List<string>();
+            List<string> extractedData = new();
 
             foreach (string file in csFiles)
             {

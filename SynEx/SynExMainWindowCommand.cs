@@ -6,7 +6,7 @@ namespace SynEx
     {
         public const int CommandId = 256;
 
-        public static readonly Guid CommandSet = new Guid("924599ce-e991-459e-becd-2d2b29abd238");
+        public static readonly Guid CommandSet = new("924599ce-e991-459e-becd-2d2b29abd238");
 
         private readonly AsyncPackage package;
 
@@ -24,13 +24,6 @@ namespace SynEx
             get;
             private set;
         }
-        private Microsoft.VisualStudio.Shell.IAsyncServiceProvider ServiceProvider
-        {
-            get
-            {
-                return this.package;
-            }
-        }
         public static async Task InitializeAsync(AsyncPackage package)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
@@ -38,11 +31,10 @@ namespace SynEx
             OleMenuCommandService commandService = await package.GetServiceAsync((typeof(IMenuCommandService))) as OleMenuCommandService;
             Instance = new SynExMainWindowCommand(package, commandService);
         }
-        private void Execute(object sender, EventArgs e)
+        private async void Execute(object sender, EventArgs e)
         {
-            ExecuteAsync();
+            await ExecuteAsync();
         }
-
         public async Task ExecuteAsync()
         {
             await this.package.JoinableTaskFactory.RunAsync(async delegate

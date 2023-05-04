@@ -33,7 +33,7 @@ namespace SynEx.Data
         // Create a function that finds all files of type .cs and stores them in a list
         public static List<string> GetCsFiles()
         {
-            List<string> csFiles = new List<string>();
+            List<string> csFiles = new();
 
             // Get the solution path
             string solutionPath = GetSolutionPath();
@@ -56,13 +56,11 @@ namespace SynEx.Data
         // Create a helper method that saves text to a file using a TextWriter
         private static void SaveTextToFile(string filePath, List<string> textLines)
         {
-            using (TextWriter writer = File.CreateText(filePath))
+            using TextWriter writer = File.CreateText(filePath);
+            foreach (string line in textLines)
             {
-                foreach (string line in textLines)
-                {
-                    // Write each line of text to the file
-                    writer.WriteLine(line);
-                }
+                // Write each line of text to the file
+                writer.WriteLine(line);
             }
         }
 
@@ -93,28 +91,6 @@ namespace SynEx.Data
         }
 
         //SaveCoordinator is the way we coordinate how the files/Code Text shall be Saved and Copied.
-        private static Dictionary<string, List<string>> AssociateItemsWithFiles(List<string> csFiles, List<string> items)
-        {
-            Dictionary<string, List<string>> fileToItemsMap = new Dictionary<string, List<string>>();
-
-            foreach (string item in items)
-            {
-                string foundFile = csFiles.FirstOrDefault(file => file.Contains(item));
-                if (foundFile != null)
-                {
-                    if (fileToItemsMap.ContainsKey(foundFile))
-                    {
-                        fileToItemsMap[foundFile].Add(item);
-                    }
-                    else
-                    {
-                        fileToItemsMap[foundFile] = new List<string> { item };
-                    }
-                }
-            }
-
-            return fileToItemsMap;
-        }
         public static void SaveCoordinator(string action)
         {
             switch (action)
@@ -131,7 +107,7 @@ namespace SynEx.Data
                     SaveClassNamesToFile(classNames, folderPath);
 
                     // Combine class names and function names into a single list
-                    List<string> combinedItems = new List<string>();
+                    List<string> combinedItems = new();
                     foreach (string file in csFiles)
                     {
                         string fileContent = File.ReadAllText(file);
