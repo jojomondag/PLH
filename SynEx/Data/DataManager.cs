@@ -1,6 +1,8 @@
 ﻿using EnvDTE;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
 using SynEx.Logic;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -91,6 +93,28 @@ namespace SynEx.Data
         }
 
         //SaveCoordinator is the way we coordinate how the files/Code Text shall be Saved and Copied.
+        private static Dictionary<string, List<string>> AssociateItemsWithFiles(List<string> csFiles, List<string> items)
+        {
+            Dictionary<string, List<string>> fileToItemsMap = new Dictionary<string, List<string>>();
+
+            foreach (string item in items)
+            {
+                string foundFile = csFiles.FirstOrDefault(file => file.Contains(item));
+                if (foundFile != null)
+                {
+                    if (fileToItemsMap.ContainsKey(foundFile))
+                    {
+                        fileToItemsMap[foundFile].Add(item);
+                    }
+                    else
+                    {
+                        fileToItemsMap[foundFile] = new List<string> { item };
+                    }
+                }
+            }
+
+            return fileToItemsMap;
+        }
         public static void SaveCoordinator(string action)
         {
             switch (action)
@@ -108,12 +132,31 @@ namespace SynEx.Data
 
                     // Combine class names and function names into a single list
                     List<string> combinedItems = new List<string>();
-                    combinedItems.AddRange(classNames);
-                    combinedItems.Add("");
-                    combinedItems.Add("Functions:");
-                    foreach (string functionName in functionNames)
+                    foreach (string file in csFiles)
                     {
-                        combinedItems.Add("\t" + functionName);
+                        string fileContent = File.ReadAllText(file);
+                        SyntaxTree tree = CSharpSyntaxTree.ParseText(fileContent);
+                        CompilationUnitSyntax root = tree.GetCompilationUnitRoot();
+
+                        var classDeclarations = root.DescendantNodes().OfType<ClassDeclarationSyntax>();
+                        foreach (var classDeclaration in classDeclarations)
+                        {
+                            string className = classDeclaration.Identifier.ValueText;
+                            if (classNames.Contains(className))
+                            {
+                                combinedItems.Add(className);
+                            }
+
+                            var methodDeclarations = classDeclaration.DescendantNodes().OfType<MethodDeclarationSyntax>();
+                            foreach (var methodDeclaration in methodDeclarations)
+                            {
+                                string functionName = methodDeclaration.Identifier.ValueText;
+                                if (functionNames.Contains(functionName))
+                                {
+                                    combinedItems.Add("\t" + functionName);
+                                }
+                            }
+                        }
                     }
 
                     // Set combined items to the clipboard
