@@ -10,7 +10,7 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <TextBlock Margin="10" HorizontalAlignment="Center">Syntax Extractor</TextBlock>
-            <Button Content="1.Function names only" Click="button1_Click" Width="168" Height="28" Name="button1"/>
+            <Button Content="1. Class Names and Function names" Click="ClassFuncClick" Width="205" Height="28" Name="button1"/>
         </StackPanel>
     </Grid>
 </UserControl>
