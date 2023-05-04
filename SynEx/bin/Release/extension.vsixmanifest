@@ -1,8 +1,8 @@
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011">
   <Metadata>
-    <Identity Id="SynEx.070df596-5524-4fef-be58-904341eeea24" Version="1.0" Language="en-US" Publisher="Josef Nobach" />
+    <Identity Id="SynEx_SyntaxExtractor" Version="1.0" Language="en-US" Publisher="Josef Nobach" />
     <DisplayName>SynEx</DisplayName>
-    <Description xml:space="preserve">Syntax Extractor Helps you Extract your code.</Description>
+    <Description xml:space="preserve">Syntax Extractor: Enhance Your AI-Code Interaction</Description>
     <Icon>Resources\Icon.png</Icon>
     <PreviewImage>Resources\Icon.png</PreviewImage>
   </Metadata>

@@ -97,7 +97,6 @@ C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\VSCT.read.1.tlog
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\VSCT.write.1.tlog
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\resources.json
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\ctoFiles.json
-C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\_EmptyResource.resources.original
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\mergeCto.cache
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\SynEx.csproj.CoreCompileInputs.cache
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\SynEx.csproj.CopyComplete

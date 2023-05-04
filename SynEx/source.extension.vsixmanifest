@@ -1,32 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="SynEx.070df596-5524-4fef-be58-904341eeea24" Version="1.0" Language="en-US" Publisher="Josef Nobach" />
+        <Identity Id="SynEx_SyntaxExtractor" Version="1.0" Language="en-US" Publisher="Josef Nobach" />
         <DisplayName>SynEx</DisplayName>
-        <Description xml:space="preserve">Syntax Extractor: Enhance Your AI-Code Interaction
-
-Syntax Extractor is a versatile Visual Studio extension designed to transform your code into a syntax tree for seamless communication with AI platforms like ChatGPT. It offers customizable extraction types, smart output management, and clipboard convenience.
-
-Key Features:
-
-Intuitive integration with Visual Studio
-Customizable extraction: function names, parameters, return types, and access modifiers
-Syntax tree saved outside the main solution folder
-Automatic code copy to clipboardSyntax Extractor: Enhance Your AI-Code Interaction
-
-Syntax Extractor is a versatile Visual Studio extension designed to transform your code into a syntax tree for seamless communication with AI platforms like ChatGPT. It offers customizable extraction types, smart output management, and clipboard convenience.
-
-Key Features:
-
-Intuitive integration with Visual Studio
-Customizable extraction: function names, parameters, return types, and access modifiers
-Syntax tree saved outside the main solution folder
-Automatic code copy to clipboardExtraction Types:
-
-Function Names: Retrieve only the names of functions within your code.
-Function Names &amp; Parameters: Extract function names along with their respective parameters.
-Function Names, Parameters &amp; Return Types: Obtain function names, parameters, and their return types for a comprehensive overview.
-Access Modifier, Static, Function Names, Parameters &amp; Return Types: Get the full scope with access modifiers, static information, function names, parameters, and return types.</Description>
+        <Description xml:space="preserve">Syntax Extractor: Enhance Your AI-Code Interaction</Description>
         <Icon>Resources\Icon.png</Icon>
         <PreviewImage>Resources\Icon.png</PreviewImage>
     </Metadata>
