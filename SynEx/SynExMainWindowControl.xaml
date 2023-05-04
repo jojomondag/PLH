@@ -18,31 +18,31 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
-            <Button Content="1. Class Names and Function names" Click="Extract1Click" Width="295" Height="28" Name="Extract1Butt">
+            <Button Content="1.Function names" Click="Extract1Click" Width="295" Height="28" Name="Extract1Butt">
                 <Button.Style>
                     <Style TargetType="Button">
-                        <Setter Property="FontSize" Value="6.67"/>
+                        <Setter Property="FontSize" Value="9"/>
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Content="2. Visibility Static Class Names and Function names" Click="Extract2Click" Width="295" Height="28" x:Name="Extract2Butt">
+            <Button Content="2. Function names, parameters" Click="Extract2Click" Width="295" Height="28" x:Name="Extract2Butt">
                 <Button.Style>
                     <Style TargetType="Button">
-                        <Setter Property="FontSize" Value="6.67"/>
+                        <Setter Property="FontSize" Value="9"/>
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Content="3. Visibility Static Return Class Names and Function names" Click="Extract3Click" Width="295" Height="28" x:Name="Extract3Butt">
+            <Button Content="3. Function names, parameters, return types" Click="Extract3Click" Width="295" Height="28" x:Name="Extract3Butt">
                 <Button.Style>
                     <Style TargetType="Button">
-                        <Setter Property="FontSize" Value="6.67"/>
+                        <Setter Property="FontSize" Value="9"/>
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Content="4. Visibility Static Return Class Names and Function names Parameters" Click="Extract4Click" Width="295" Height="28" x:Name="Extract4Butt">
+            <Button Content="4. Access modifier, static, function names, parameters, return types" Click="Extract4Click" Width="295" Height="28" x:Name="Extract4Butt">
                 <Button.Style>
                     <Style TargetType="Button">
-                        <Setter Property="FontSize" Value="6.67"/>
+                        <Setter Property="FontSize" Value="9"/>
                     </Style>
                 </Button.Style>
             </Button>

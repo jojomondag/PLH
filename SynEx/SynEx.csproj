@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="Data\ClipboardManager.cs" />
     <Compile Include="Data\DataManager.cs" />
-    <Compile Include="Logic\CodeExtractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\MyCommand.cs" />
     <Compile Include="SynExMainWindow.cs" />

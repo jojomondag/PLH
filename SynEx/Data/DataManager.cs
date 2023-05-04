@@ -2,21 +2,78 @@
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis;
-using SynEx.Logic;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using MessageBox = System.Windows.MessageBox;
 
 namespace SynEx.Data
 {
     public class DataManager
     {
-        // Create a function that gets the path of the currently opened solution
-        public static string GetSolutionPath()
+        public static async Task<List<string>> ExtractDetails(List<string> csFiles, int extractionLevel)
         {
-            // Make sure we're on the UI thread before accessing the DTE object
-            ThreadHelper.ThrowIfNotOnUIThread();
+            List<string> combinedItems = new();
 
+            foreach (string file in csFiles)
+            {
+                string fileContent = File.ReadAllText(file);
+                SyntaxTree tree = CSharpSyntaxTree.ParseText(fileContent);
+                CompilationUnitSyntax root = tree.GetCompilationUnitRoot();
+
+                var classDeclarations = root.DescendantNodes().OfType<ClassDeclarationSyntax>();
+                foreach (var classDeclaration in classDeclarations)
+                {
+                    string className = classDeclaration.Identifier.ValueText;
+                    combinedItems.Add(className);
+
+                    var methodDeclarations = classDeclaration.DescendantNodes().OfType<MethodDeclarationSyntax>();
+                    foreach (var methodDeclaration in methodDeclarations)
+                    {
+                        StringBuilder sb = new();
+
+                        if (extractionLevel >= 4)
+                        {
+                            var modifiers = methodDeclaration.Modifiers;
+                            foreach (var modifier in modifiers)
+                            {
+                                sb.Append(modifier.ValueText + " ");
+                            }
+                        }
+
+                        if (extractionLevel >= 3)
+                        {
+                            sb.Append(methodDeclaration.ReturnType.ToString() + " ");
+                        }
+
+                        sb.Append(methodDeclaration.Identifier.ValueText);
+
+                        if (extractionLevel >= 2)
+                        {
+                            sb.Append("(");
+                            var parameters = methodDeclaration.ParameterList.Parameters;
+                            for (int i = 0; i < parameters.Count; i++)
+                            {
+                                sb.Append(parameters[i].ToString());
+                                if (i < parameters.Count - 1) sb.Append(", ");
+                            }
+                            sb.Append(")");
+                        }
+
+                        combinedItems.Add("\t" + sb.ToString());
+                    }
+                }
+            }
+
+            return combinedItems;
+        }
+
+        // Create a function that gets the path of the currently opened solution
+        public static async Task<string> GetSolutionPathAsync()
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             DTE dte = (DTE)Package.GetGlobalService(typeof(DTE));
 
             if (!string.IsNullOrEmpty(dte.Solution.FullName))
@@ -31,13 +88,12 @@ namespace SynEx.Data
         }
 
         // Create a function that finds all files of type .cs and stores them in a list
-        public static List<string> GetCsFiles()
+        public static async Task<List<string>> GetCsFilesAsync()
         {
             List<string> csFiles = new();
 
             // Get the solution path
-            string solutionPath = GetSolutionPath();
-
+            string solutionPath = await GetSolutionPathAsync();
             if (!string.IsNullOrEmpty(solutionPath))
             {
                 // Find all .cs files in the solution directory and subdirectories
@@ -46,103 +102,50 @@ namespace SynEx.Data
 
             return csFiles;
         }
-
-        // Create a helper method that returns the current date and time as a formatted string
-        public static string GetCurrentDateTimeString()
+        public static async Task SaveCoordinatorAsync(string action)
         {
-            return DateTime.Now.ToString("yyyyMMdd-HHmmss");
-        }
+            List<string> csFiles = await GetCsFilesAsync();
+            string folderPath = await GetSolutionPathAsync();
+            List<string> combinedItems = new();
 
-        // Create a helper method that saves text to a file using a TextWriter
-        private static void SaveTextToFile(string filePath, List<string> textLines)
-        {
-            using TextWriter writer = File.CreateText(filePath);
-            foreach (string line in textLines)
-            {
-                // Write each line of text to the file
-                writer.WriteLine(line);
-            }
-        }
-
-        // Create a function that saves a list of function names to a file with the current date and time in the file name
-        public static void SaveFunctionNamesToFile(List<string> functionNames, string folderPath)
-        {
-            // Get the current date and time as a formatted string
-            string dateTimeString = GetCurrentDateTimeString();
-
-            // Combine the folder path and date/time string to create the file path
-            string filePath = Path.Combine(folderPath, $"functionNames_{dateTimeString}.txt");
-
-            // Call the SaveTextToFile function to save the function names to the file
-            SaveTextToFile(filePath, functionNames);
-        }
-
-        // Create a function that saves a list of class names to a file with the current date and time in the file name
-        public static void SaveClassNamesToFile(List<string> classNames, string folderPath)
-        {
-            // Get the current date and time as a formatted string
-            string dateTimeString = GetCurrentDateTimeString();
-
-            // Combine the folder path and date/time string to create the file path
-            string filePath = Path.Combine(folderPath, $"classNames_{dateTimeString}.txt");
-
-            // Call the SaveTextToFile function to save the class names to the file
-            SaveTextToFile(filePath, classNames);
-        }
-
-        //SaveCoordinator is the way we coordinate how the files/Code Text shall be Saved and Copied.
-        public static void SaveCoordinator(string action)
-        {
             switch (action)
             {
                 case "1":
-                    List<string> csFiles = GetCsFiles();
+                    combinedItems = await ExtractDetails(csFiles, 1);
+                    break;
 
-                    List<string> classNames = CodeExtractor.ExtractClassNames(csFiles);
-                    List<string> functionNames = CodeExtractor.ExtractFunctionNames(csFiles);
+                case "2":
+                    combinedItems = await ExtractDetails(csFiles, 2);
+                    break;
 
-                    string folderPath = GetSolutionPath();
+                case "3":
+                    combinedItems = await ExtractDetails(csFiles, 3);
+                    break;
 
-                    SaveFunctionNamesToFile(functionNames, folderPath);
-                    SaveClassNamesToFile(classNames, folderPath);
-
-                    // Combine class names and function names into a single list
-                    List<string> combinedItems = new();
-                    foreach (string file in csFiles)
-                    {
-                        string fileContent = File.ReadAllText(file);
-                        SyntaxTree tree = CSharpSyntaxTree.ParseText(fileContent);
-                        CompilationUnitSyntax root = tree.GetCompilationUnitRoot();
-
-                        var classDeclarations = root.DescendantNodes().OfType<ClassDeclarationSyntax>();
-                        foreach (var classDeclaration in classDeclarations)
-                        {
-                            string className = classDeclaration.Identifier.ValueText;
-                            if (classNames.Contains(className))
-                            {
-                                combinedItems.Add(className);
-                            }
-
-                            var methodDeclarations = classDeclaration.DescendantNodes().OfType<MethodDeclarationSyntax>();
-                            foreach (var methodDeclaration in methodDeclarations)
-                            {
-                                string functionName = methodDeclaration.Identifier.ValueText;
-                                if (functionNames.Contains(functionName))
-                                {
-                                    combinedItems.Add("\t" + functionName);
-                                }
-                            }
-                        }
-                    }
-
-                    // Set combined items to the clipboard
-                    ClipboardManager.SetTextToClipboard(combinedItems);
-
+                case "4":
+                    combinedItems = await ExtractDetails(csFiles, 4);
                     break;
 
                 default:
-                    Console.WriteLine("Error: Unrecognized action.");
-                    break;
+                    MessageBox.Show("Error: Unrecognized action.");
+                    return;
+            }
+
+            SaveCombinedItemsToFile(combinedItems, folderPath);
+            ClipboardManager.SetTextToClipboard(combinedItems);
+        }
+        public static void SaveCombinedItemsToFile(List<string> combinedItems, string folderPath)
+        {
+            if (combinedItems == null || combinedItems.Count == 0) return;
+
+            // Create a unique filename using the current date and time
+            string fileName = $"CombinedItems_{DateTime.Now:yyyyMMdd_HHmmss}.txt";
+            string filePath = Path.Combine(folderPath, fileName);
+
+            using StreamWriter sw = new StreamWriter(filePath);
+            foreach (string item in combinedItems)
+            {
+                sw.WriteLine(item);
             }
         }
     }
