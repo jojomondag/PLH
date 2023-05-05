@@ -131,16 +131,21 @@ namespace SynEx.Data
                     return;
             }
 
-            SaveCombinedItemsToFile(combinedItems, folderPath);
+            await SaveCombinedItemsToFileAsync(combinedItems);
             ClipboardManager.SetTextToClipboard(combinedItems);
         }
-        public static void SaveCombinedItemsToFile(List<string> combinedItems, string folderPath)
+        public static async Task SaveCombinedItemsToFileAsync(List<string> combinedItems)
         {
             if (combinedItems == null || combinedItems.Count == 0) return;
 
+            // Get the solution path and create a SynEx directory within it
+            string solutionPath = await GetSolutionPathAsync();
+            string synexPath = Path.Combine(solutionPath, "SynEx");
+            Directory.CreateDirectory(synexPath);
+
             // Create a unique filename using the current date and time
             string fileName = $"CombinedItems_{DateTime.Now:yyyyMMdd_HHmmss}.txt";
-            string filePath = Path.Combine(folderPath, fileName);
+            string filePath = Path.Combine(synexPath, fileName);
 
             using StreamWriter sw = new StreamWriter(filePath);
             foreach (string item in combinedItems)

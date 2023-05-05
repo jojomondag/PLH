@@ -30,6 +30,10 @@ namespace SynEx
         {
             await ExtractClickAsync("4");
         }
+        private async void ExtractFolderStructureClick(object sender, RoutedEventArgs e)
+        {
+            await ExtractFolderStructure.ExtractFilesAndFolderStructureTree();
+        }
 
         private async Task ExtractClickAsync(string action)
         {

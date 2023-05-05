@@ -2,7 +2,6 @@ C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\SynEx.csproj.AssemblyReferen
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\_EmptyResource.resources
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\SynEx.csproj.GenerateResource.cache
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\Community.VisualStudio.Toolkit.dll
-C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\Resources\Icon.png
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\SynEx.dll
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\SynEx.pdb
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\SynEx.pkgdef

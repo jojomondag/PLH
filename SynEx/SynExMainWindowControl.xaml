@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
              Name="MyToolWindow">
@@ -18,7 +17,7 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
-            <Button Content="1.Function names" Click="Extract1Click" Width="295" Height="28" Name="Extract1Butt">
+            <Button Content="1.Function names" Click="Extract1Click" Width="295" Height="28" x:Name="Extract1Butt">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="FontSize" Value="9"/>
@@ -40,6 +39,17 @@
                 </Button.Style>
             </Button>
             <Button Content="4. Access modifier, static, function names, parameters, return types" Click="Extract4Click" Width="295" Height="28" x:Name="Extract4Butt">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="FontSize" Value="9"/>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Width="295" Height="28" Click="ExtractFolderStructureClick">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="C:\Users\Josef\Documents\GitHub\PLH\SynEx\Resources\ConvertFolderToBranch.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                    <TextBlock Text="Extract folderstructure tree " VerticalAlignment="Center"/>
+                </StackPanel>
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="FontSize" Value="9"/>

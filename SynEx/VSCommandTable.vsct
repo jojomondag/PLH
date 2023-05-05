@@ -33,9 +33,6 @@
         </Strings>
       </Button>
     </Buttons>
-    <Bitmaps>
-      <Bitmap guid="guidImages" href="Resources\SynExMainWindowCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
-    </Bitmaps>
   </Commands>
 
   <Symbols>

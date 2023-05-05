@@ -1,5 +1,4 @@
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Release\Community.VisualStudio.Toolkit.dll
-C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Release\Resources\Icon.png
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Release\SynEx.dll
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Release\SynEx.pdb
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Release\SynEx.pkgdef
