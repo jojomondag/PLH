@@ -69,31 +69,12 @@ namespace SynEx.Data
 
             return combinedItems;
         }
-
-        // Create a function that gets the path of the currently opened solution
-        public static async Task<string> GetSolutionPathAsync()
-        {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            DTE dte = (DTE)Package.GetGlobalService(typeof(DTE));
-
-            if (!string.IsNullOrEmpty(dte.Solution.FullName))
-            {
-                string solutionPath = Path.GetDirectoryName(dte.Solution.FullName);
-                return solutionPath;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        // Create a function that finds all files of type .cs and stores them in a list
         public static async Task<List<string>> GetCsFilesAsync()
         {
             List<string> csFiles = new();
 
-            // Get the solution path
-            string solutionPath = await GetSolutionPathAsync();
+            // Get the solution path using UserControl
+            string solutionPath = await UserControl.Instance.GetSolutionPathAsync();
             if (!string.IsNullOrEmpty(solutionPath))
             {
                 // Find all .cs files in the solution directory and subdirectories
@@ -105,7 +86,7 @@ namespace SynEx.Data
         public static async Task SaveCoordinatorAsync(string action)
         {
             List<string> csFiles = await GetCsFilesAsync();
-            string folderPath = await GetSolutionPathAsync();
+            string folderPath = await UserControl.Instance.GetSolutionPathAsync();
             List<string> combinedItems = new();
 
             switch (action)
@@ -139,7 +120,7 @@ namespace SynEx.Data
             if (combinedItems == null || combinedItems.Count == 0) return;
 
             // Get the solution path and create a SynEx directory within it
-            string solutionPath = await GetSolutionPathAsync();
+            string solutionPath = await UserControl.Instance.GetSolutionPathAsync();
             string synexPath = Path.Combine(solutionPath, "SynEx");
             Directory.CreateDirectory(synexPath);
 

@@ -106,3 +106,4 @@ C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\System.Threading.Channels.dl
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\System.Threading.Tasks.Extensions.dll
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\System.ValueTuple.dll
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\SynEx.csproj.CopyComplete
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\_EmptyResource.resources.original

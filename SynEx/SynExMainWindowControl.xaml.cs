@@ -4,7 +4,7 @@ using SynEx.Data;
 
 namespace SynEx
 {
-    public partial class SynExMainWindowControl : UserControl
+    public partial class SynExMainWindowControl : System.Windows.Controls.UserControl
     {
         public SynExMainWindowControl()
         {

@@ -18,6 +18,7 @@ namespace SynEx
         {
             await this.RegisterCommandsAsync();
             await SynExMainWindowCommand.InitializeAsync(this);
+            UserControl.Initialize(this);
         }
     }
 }

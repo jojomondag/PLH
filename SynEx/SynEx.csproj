@@ -49,6 +49,7 @@
     <Compile Include="Data\ClipboardManager.cs" />
     <Compile Include="Data\DataManager.cs" />
     <Compile Include="Data\ExtractFolderStructure.cs" />
+    <Compile Include="Data\UserControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\MyCommand.cs" />
     <Compile Include="SynExMainWindow.cs" />
