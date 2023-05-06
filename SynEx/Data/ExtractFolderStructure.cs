@@ -2,7 +2,6 @@
 using EnvDTE;
 using SynEx.Data;
 using EnvDTE80;
-using System.Linq;
 using System.IO;
 
 namespace SynEx
