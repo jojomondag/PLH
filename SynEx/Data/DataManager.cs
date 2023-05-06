@@ -1,5 +1,4 @@
-﻿using EnvDTE;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis;
 using System.Collections.Generic;
@@ -8,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MessageBox = System.Windows.MessageBox;
+using EnvDTE;
 
 namespace SynEx.Data
 {
@@ -69,23 +69,31 @@ namespace SynEx.Data
 
             return combinedItems;
         }
-        public static async Task<List<string>> GetCsFilesAsync()
+
+        public static async Task<List<string>> GetCsFilesAsync(List<ProjectItem> projectItems)
         {
             List<string> csFiles = new();
 
-            // Get the solution path using UserControl
-            string solutionPath = await UserControl.Instance.GetSolutionPathAsync();
-            if (!string.IsNullOrEmpty(solutionPath))
+            foreach (var projectItem in projectItems)
             {
-                // Find all .cs files in the solution directory and subdirectories
-                csFiles = Directory.GetFiles(solutionPath, "*.cs", SearchOption.AllDirectories).ToList();
+                if (projectItem.Name.EndsWith(".cs"))
+                {
+                    string filePath = projectItem.FileNames[0];
+                    csFiles.Add(filePath);
+                }
             }
 
             return csFiles;
         }
+
         public static async Task SaveCoordinatorAsync(string action)
         {
-            List<string> csFiles = await GetCsFilesAsync();
+            // Get the C# project items using UserControl
+            List<ProjectItem> projectItems = await UserControl.Instance.GetAllCsProjectItemsAsync();
+
+            // Get the C# files from the project items
+            List<string> csFiles = await GetCsFilesAsync(projectItems);
+
             string folderPath = await UserControl.Instance.GetSolutionPathAsync();
             List<string> combinedItems = new();
 
@@ -119,7 +127,7 @@ namespace SynEx.Data
         {
             if (combinedItems == null || combinedItems.Count == 0) return;
 
-            // Get the solution path and create a SynEx directory within it
+            // Get the solution// path and create a SynEx directory within it
             string solutionPath = await UserControl.Instance.GetSolutionPathAsync();
             string synexPath = Path.Combine(solutionPath, "SynEx");
             Directory.CreateDirectory(synexPath);

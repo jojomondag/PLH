@@ -31,9 +31,9 @@ namespace SynEx
 
         private static void ProcessProjectItems(ProjectItems projectItems, List<string> filePaths, List<string> folderPaths)
         {
-            foreach (EnvDTE.ProjectItem item in projectItems)
+            foreach (ProjectItem item in projectItems)
             {
-                if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFile)
+                if (item.Kind == Constants.vsProjectItemKindPhysicalFile)
                 {
                     string filePath = item.FileNames[1];
                     filePaths.Add(filePath);

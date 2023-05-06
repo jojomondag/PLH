@@ -1,6 +1,8 @@
 ﻿using EnvDTE;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using Project = EnvDTE.Project;
 
 namespace SynEx
 {
@@ -9,6 +11,34 @@ namespace SynEx
         private static UserControl _instance;
         private readonly DTE _dte;
 
+        private void GetProjectItemsRecursively(ProjectItems projectItems, List<ProjectItem> allItems)
+        {
+            if (projectItems == null) return;
+
+            foreach (ProjectItem item in projectItems)
+            {
+                if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFile)
+                {
+                    allItems.Add(item);
+                }
+                else if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFolder)
+                {
+                    GetProjectItemsRecursively(item.ProjectItems, allItems);
+                }
+            }
+        }
+        public async Task<List<ProjectItem>> GetAllCsProjectItemsAsync()
+        {
+            List<ProjectItem> projectItems = new List<ProjectItem>();
+
+            var projects = _dte.Solution.Projects;
+            foreach (Project project in projects)
+            {
+                GetProjectItemsRecursively(project.ProjectItems, projectItems);
+            }
+
+            return projectItems;
+        }
         private UserControl(DTE dte)
         {
             if (dte == null)
