@@ -108,3 +108,6 @@ C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\Resources\Icon128.png
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\Resources\Icon90.png
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\SynEx.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\Preview image copy.png
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\VSCT.read.1.tlog
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\VSCT.write.1.tlog
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\_EmptyResource.resources.original
