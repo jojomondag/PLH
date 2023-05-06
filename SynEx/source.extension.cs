@@ -13,6 +13,6 @@ namespace SynEx
         public const string Language = "en-US";
         public const string Version = "1.0";
         public const string Author = "Josef Nobach";
-        public const string Tags = "";
+        public const string Tags = "Ai, Syntax Extractor, Context, FilePath extractor, EfficientWorkflow, CodeAnalysis";
     }
 }

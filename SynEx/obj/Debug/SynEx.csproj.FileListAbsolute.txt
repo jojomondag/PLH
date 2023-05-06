@@ -8,8 +8,6 @@ C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\SynEx.pkgdef
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\SynEx.vsix
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\extension.vsixmanifest
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\VSCommandTable.cto
-C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\VSCT.read.1.tlog
-C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\VSCT.write.1.tlog
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\resources.json
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\ctoFiles.json
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\mergeCto.cache
@@ -106,3 +104,7 @@ C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\System.Threading.Channels.dl
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\System.Threading.Tasks.Extensions.dll
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\System.ValueTuple.dll
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\SynEx.csproj.CopyComplete
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\Resources\Icon128.png
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\Resources\Icon90.png
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\SynEx.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\Preview image copy.png

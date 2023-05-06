@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Design;
+using System.Windows;
 
 namespace SynEx
 {
@@ -31,10 +32,20 @@ namespace SynEx
             OleMenuCommandService commandService = await package.GetServiceAsync((typeof(IMenuCommandService))) as OleMenuCommandService;
             Instance = new SynExMainWindowCommand(package, commandService);
         }
+#pragma warning disable VSTHRD100 // Avoid async void methods
         private async void Execute(object sender, EventArgs e)
+#pragma warning restore VSTHRD100 // Avoid async void methods
         {
-            await ExecuteAsync();
+            try
+            {
+                await ExecuteAsync();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show($"Oops! Something went wrong: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
         public async Task ExecuteAsync()
         {
             await this.package.JoinableTaskFactory.RunAsync(async delegate
@@ -46,5 +57,6 @@ namespace SynEx
                 }
             });
         }
+
     }
 }

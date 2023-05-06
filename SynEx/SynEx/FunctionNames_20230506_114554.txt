@@ -1,0 +1,25 @@
+MyCommand
+	ExecuteAsync
+ClipboardManager
+	SetTextToClipboard
+DataManager
+	ExtractDetails
+	GetCsFilesAsync
+	SaveCoordinatorAsync
+	SaveCombinedItemsToFileAsync
+ExtractFolderStructure
+	ExtractFilesAndFolderStructureTree
+	ProcessProjectItems
+UserControl
+	GetProjectItemsRecursively
+	GetAllCsProjectItemsAsync
+	Initialize
+	GetSolutionPathAsync
+IsExternalInit
+SynExMainWindow
+SynExMainWindowCommand
+	InitializeAsync
+	Execute
+	ExecuteAsync
+SynExPackage
+	InitializeAsync

@@ -41,7 +41,7 @@
             "Community.VisualStudio.Toolkit.17": {
               "include": "Compile, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "target": "Package",
-              "version": "[17.0.430, )"
+              "version": "[17.0.492, )"
             },
             "Community.VisualStudio.VSCT": {
               "suppressParent": "All",
@@ -57,8 +57,10 @@
               "version": "[4.5.0, )"
             },
             "Microsoft.VSSDK.BuildTools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[17.0.5232, )",
+              "version": "[17.5.4074, )",
               "generatePathProperty": true
             }
           }

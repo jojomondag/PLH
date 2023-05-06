@@ -92,8 +92,6 @@ C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\SynEx.g.resources
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\_EmptyResource.resources
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\SynEx.csproj.GenerateResource.cache
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\VSCommandTable.cto
-C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\VSCT.read.1.tlog
-C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\VSCT.write.1.tlog
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\resources.json
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\ctoFiles.json
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\mergeCto.cache
@@ -107,3 +105,9 @@ C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\extension.vsixmanifest
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\files.json
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\createTemplateManifests.cache
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Release\Resources\Icon90.png
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Release\Preview image copy.png
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Release\Resources\Icon128.png
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\_EmptyResource.resources.original
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\SynEx.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\VSCT.read.1.tlog
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\VSCT.write.1.tlog

@@ -15,6 +15,8 @@ namespace SynEx
         {
             if (projectItems == null) return;
 
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             foreach (ProjectItem item in projectItems)
             {
                 if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFile)
@@ -30,6 +32,8 @@ namespace SynEx
         public async Task<List<ProjectItem>> GetAllCsProjectItemsAsync()
         {
             List<ProjectItem> projectItems = new List<ProjectItem>();
+
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             var projects = _dte.Solution.Projects;
             foreach (Project project in projects)
@@ -51,6 +55,8 @@ namespace SynEx
 
         public static UserControl Initialize(IServiceProvider serviceProvider)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             if (_instance == null)
             {
                 DTE dte = (DTE)serviceProvider.GetService(typeof(DTE));
@@ -62,7 +68,6 @@ namespace SynEx
             }
             return _instance;
         }
-
         public static UserControl Instance
         {
             get

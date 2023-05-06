@@ -2,10 +2,10 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.8": {
-      "Community.VisualStudio.Toolkit.17/17.0.430": {
+      "Community.VisualStudio.Toolkit.17/17.0.492": {
         "type": "package",
         "dependencies": {
-          "Community.VisualStudio.Toolkit.Analyzers": "1.0.430",
+          "Community.VisualStudio.Toolkit.Analyzers": "1.0.492",
           "Microsoft.VisualStudio.SDK": "17.0.31902.203"
         },
         "compile": {
@@ -23,7 +23,7 @@
           "build/Community.VisualStudio.Toolkit.17.targets": {}
         }
       },
-      "Community.VisualStudio.Toolkit.Analyzers/1.0.430": {
+      "Community.VisualStudio.Toolkit.Analyzers/1.0.492": {
         "type": "package"
       },
       "Community.VisualStudio.VSCT/16.0.29.6": {
@@ -201,6 +201,13 @@
         "type": "package",
         "build": {
           "build/_._": {}
+        }
+      },
+      "Microsoft.CodeAnalysis.BannedApiAnalyzers/3.3.2": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.CodeAnalysis.BannedApiAnalyzers.props": {},
+          "build/Microsoft.CodeAnalysis.BannedApiAnalyzers.targets": {}
         }
       },
       "Microsoft.CodeAnalysis.Common/4.5.0": {
@@ -1040,10 +1047,11 @@
           "stdole": "17.0.31902.203"
         }
       },
-      "Microsoft.VisualStudio.SDK.Analyzers/15.8.33": {
+      "Microsoft.VisualStudio.SDK.Analyzers/16.10.10": {
         "type": "package",
         "dependencies": {
-          "Microsoft.VisualStudio.Threading.Analyzers": "15.8.122"
+          "Microsoft.CodeAnalysis.BannedApiAnalyzers": "3.3.2",
+          "Microsoft.VisualStudio.Threading.Analyzers": "16.10.56"
         },
         "build": {
           "build/Microsoft.VisualStudio.SDK.Analyzers.targets": {}
@@ -1653,14 +1661,27 @@
           }
         }
       },
-      "Microsoft.VSSDK.BuildTools/17.0.5232": {
+      "Microsoft.VSSDK.BuildTools/17.5.4074": {
         "type": "package",
         "dependencies": {
-          "Microsoft.VisualStudio.SDK.Analyzers": "15.8.33"
+          "Microsoft.VisualStudio.SDK.Analyzers": "16.10.10",
+          "Microsoft.VsSDK.CompatibilityAnalyzer": "17.5.4074"
         },
         "build": {
           "build/Microsoft.VSSDK.BuildTools.props": {},
           "build/Microsoft.VSSDK.BuildTools.targets": {}
+        }
+      },
+      "Microsoft.VsSDK.CompatibilityAnalyzer/17.5.4074": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System.IO.Compression",
+          "System.IO.Compression.FileSystem",
+          "WindowsBase"
+        ],
+        "build": {
+          "build/Microsoft.VsSDK.CompatibilityAnalyzer.props": {},
+          "build/Microsoft.VsSDK.CompatibilityAnalyzer.targets": {}
         }
       },
       "Microsoft.Win32.Primitives/4.3.0": {
@@ -2519,10 +2540,10 @@
       }
     },
     ".NETFramework,Version=v4.8/win": {
-      "Community.VisualStudio.Toolkit.17/17.0.430": {
+      "Community.VisualStudio.Toolkit.17/17.0.492": {
         "type": "package",
         "dependencies": {
-          "Community.VisualStudio.Toolkit.Analyzers": "1.0.430",
+          "Community.VisualStudio.Toolkit.Analyzers": "1.0.492",
           "Microsoft.VisualStudio.SDK": "17.0.31902.203"
         },
         "compile": {
@@ -2540,7 +2561,7 @@
           "build/Community.VisualStudio.Toolkit.17.targets": {}
         }
       },
-      "Community.VisualStudio.Toolkit.Analyzers/1.0.430": {
+      "Community.VisualStudio.Toolkit.Analyzers/1.0.492": {
         "type": "package"
       },
       "Community.VisualStudio.VSCT/16.0.29.6": {
@@ -2718,6 +2739,13 @@
         "type": "package",
         "build": {
           "build/_._": {}
+        }
+      },
+      "Microsoft.CodeAnalysis.BannedApiAnalyzers/3.3.2": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.CodeAnalysis.BannedApiAnalyzers.props": {},
+          "build/Microsoft.CodeAnalysis.BannedApiAnalyzers.targets": {}
         }
       },
       "Microsoft.CodeAnalysis.Common/4.5.0": {
@@ -3557,10 +3585,11 @@
           "stdole": "17.0.31902.203"
         }
       },
-      "Microsoft.VisualStudio.SDK.Analyzers/15.8.33": {
+      "Microsoft.VisualStudio.SDK.Analyzers/16.10.10": {
         "type": "package",
         "dependencies": {
-          "Microsoft.VisualStudio.Threading.Analyzers": "15.8.122"
+          "Microsoft.CodeAnalysis.BannedApiAnalyzers": "3.3.2",
+          "Microsoft.VisualStudio.Threading.Analyzers": "16.10.56"
         },
         "build": {
           "build/Microsoft.VisualStudio.SDK.Analyzers.targets": {}
@@ -4170,14 +4199,27 @@
           }
         }
       },
-      "Microsoft.VSSDK.BuildTools/17.0.5232": {
+      "Microsoft.VSSDK.BuildTools/17.5.4074": {
         "type": "package",
         "dependencies": {
-          "Microsoft.VisualStudio.SDK.Analyzers": "15.8.33"
+          "Microsoft.VisualStudio.SDK.Analyzers": "16.10.10",
+          "Microsoft.VsSDK.CompatibilityAnalyzer": "17.5.4074"
         },
         "build": {
           "build/Microsoft.VSSDK.BuildTools.props": {},
           "build/Microsoft.VSSDK.BuildTools.targets": {}
+        }
+      },
+      "Microsoft.VsSDK.CompatibilityAnalyzer/17.5.4074": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System.IO.Compression",
+          "System.IO.Compression.FileSystem",
+          "WindowsBase"
+        ],
+        "build": {
+          "build/Microsoft.VsSDK.CompatibilityAnalyzer.props": {},
+          "build/Microsoft.VsSDK.CompatibilityAnalyzer.targets": {}
         }
       },
       "Microsoft.Win32.Primitives/4.3.0": {
@@ -5018,10 +5060,10 @@
       }
     },
     ".NETFramework,Version=v4.8/win-x64": {
-      "Community.VisualStudio.Toolkit.17/17.0.430": {
+      "Community.VisualStudio.Toolkit.17/17.0.492": {
         "type": "package",
         "dependencies": {
-          "Community.VisualStudio.Toolkit.Analyzers": "1.0.430",
+          "Community.VisualStudio.Toolkit.Analyzers": "1.0.492",
           "Microsoft.VisualStudio.SDK": "17.0.31902.203"
         },
         "compile": {
@@ -5039,7 +5081,7 @@
           "build/Community.VisualStudio.Toolkit.17.targets": {}
         }
       },
-      "Community.VisualStudio.Toolkit.Analyzers/1.0.430": {
+      "Community.VisualStudio.Toolkit.Analyzers/1.0.492": {
         "type": "package"
       },
       "Community.VisualStudio.VSCT/16.0.29.6": {
@@ -5217,6 +5259,13 @@
         "type": "package",
         "build": {
           "build/_._": {}
+        }
+      },
+      "Microsoft.CodeAnalysis.BannedApiAnalyzers/3.3.2": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.CodeAnalysis.BannedApiAnalyzers.props": {},
+          "build/Microsoft.CodeAnalysis.BannedApiAnalyzers.targets": {}
         }
       },
       "Microsoft.CodeAnalysis.Common/4.5.0": {
@@ -6056,10 +6105,11 @@
           "stdole": "17.0.31902.203"
         }
       },
-      "Microsoft.VisualStudio.SDK.Analyzers/15.8.33": {
+      "Microsoft.VisualStudio.SDK.Analyzers/16.10.10": {
         "type": "package",
         "dependencies": {
-          "Microsoft.VisualStudio.Threading.Analyzers": "15.8.122"
+          "Microsoft.CodeAnalysis.BannedApiAnalyzers": "3.3.2",
+          "Microsoft.VisualStudio.Threading.Analyzers": "16.10.56"
         },
         "build": {
           "build/Microsoft.VisualStudio.SDK.Analyzers.targets": {}
@@ -6669,14 +6719,27 @@
           }
         }
       },
-      "Microsoft.VSSDK.BuildTools/17.0.5232": {
+      "Microsoft.VSSDK.BuildTools/17.5.4074": {
         "type": "package",
         "dependencies": {
-          "Microsoft.VisualStudio.SDK.Analyzers": "15.8.33"
+          "Microsoft.VisualStudio.SDK.Analyzers": "16.10.10",
+          "Microsoft.VsSDK.CompatibilityAnalyzer": "17.5.4074"
         },
         "build": {
           "build/Microsoft.VSSDK.BuildTools.props": {},
           "build/Microsoft.VSSDK.BuildTools.targets": {}
+        }
+      },
+      "Microsoft.VsSDK.CompatibilityAnalyzer/17.5.4074": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System.IO.Compression",
+          "System.IO.Compression.FileSystem",
+          "WindowsBase"
+        ],
+        "build": {
+          "build/Microsoft.VsSDK.CompatibilityAnalyzer.props": {},
+          "build/Microsoft.VsSDK.CompatibilityAnalyzer.targets": {}
         }
       },
       "Microsoft.Win32.Primitives/4.3.0": {
@@ -7517,10 +7580,10 @@
       }
     },
     ".NETFramework,Version=v4.8/win-x86": {
-      "Community.VisualStudio.Toolkit.17/17.0.430": {
+      "Community.VisualStudio.Toolkit.17/17.0.492": {
         "type": "package",
         "dependencies": {
-          "Community.VisualStudio.Toolkit.Analyzers": "1.0.430",
+          "Community.VisualStudio.Toolkit.Analyzers": "1.0.492",
           "Microsoft.VisualStudio.SDK": "17.0.31902.203"
         },
         "compile": {
@@ -7538,7 +7601,7 @@
           "build/Community.VisualStudio.Toolkit.17.targets": {}
         }
       },
-      "Community.VisualStudio.Toolkit.Analyzers/1.0.430": {
+      "Community.VisualStudio.Toolkit.Analyzers/1.0.492": {
         "type": "package"
       },
       "Community.VisualStudio.VSCT/16.0.29.6": {
@@ -7716,6 +7779,13 @@
         "type": "package",
         "build": {
           "build/_._": {}
+        }
+      },
+      "Microsoft.CodeAnalysis.BannedApiAnalyzers/3.3.2": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.CodeAnalysis.BannedApiAnalyzers.props": {},
+          "build/Microsoft.CodeAnalysis.BannedApiAnalyzers.targets": {}
         }
       },
       "Microsoft.CodeAnalysis.Common/4.5.0": {
@@ -8555,10 +8625,11 @@
           "stdole": "17.0.31902.203"
         }
       },
-      "Microsoft.VisualStudio.SDK.Analyzers/15.8.33": {
+      "Microsoft.VisualStudio.SDK.Analyzers/16.10.10": {
         "type": "package",
         "dependencies": {
-          "Microsoft.VisualStudio.Threading.Analyzers": "15.8.122"
+          "Microsoft.CodeAnalysis.BannedApiAnalyzers": "3.3.2",
+          "Microsoft.VisualStudio.Threading.Analyzers": "16.10.56"
         },
         "build": {
           "build/Microsoft.VisualStudio.SDK.Analyzers.targets": {}
@@ -9168,14 +9239,27 @@
           }
         }
       },
-      "Microsoft.VSSDK.BuildTools/17.0.5232": {
+      "Microsoft.VSSDK.BuildTools/17.5.4074": {
         "type": "package",
         "dependencies": {
-          "Microsoft.VisualStudio.SDK.Analyzers": "15.8.33"
+          "Microsoft.VisualStudio.SDK.Analyzers": "16.10.10",
+          "Microsoft.VsSDK.CompatibilityAnalyzer": "17.5.4074"
         },
         "build": {
           "build/Microsoft.VSSDK.BuildTools.props": {},
           "build/Microsoft.VSSDK.BuildTools.targets": {}
+        }
+      },
+      "Microsoft.VsSDK.CompatibilityAnalyzer/17.5.4074": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System.IO.Compression",
+          "System.IO.Compression.FileSystem",
+          "WindowsBase"
+        ],
+        "build": {
+          "build/Microsoft.VsSDK.CompatibilityAnalyzer.props": {},
+          "build/Microsoft.VsSDK.CompatibilityAnalyzer.targets": {}
         }
       },
       "Microsoft.Win32.Primitives/4.3.0": {
@@ -10017,10 +10101,10 @@
     }
   },
   "libraries": {
-    "Community.VisualStudio.Toolkit.17/17.0.430": {
-      "sha512": "QmGih2XaUKaXesPcInkfttOj0Ezyj25y39W5RjZpnQMxc3MkkgWdp8fMlI8+XoiLa/zaxNYzYklSD++HZj64dQ==",
+    "Community.VisualStudio.Toolkit.17/17.0.492": {
+      "sha512": "ltJA5p3BeHrynwJX4oiRw8+QuQ6YQolKT89k5LC6PmuKxp5Hi+Qa4gFXtcFPjZp1qOya7PwiETMiTfaF7ts9kA==",
       "type": "package",
-      "path": "community.visualstudio.toolkit.17/17.0.430",
+      "path": "community.visualstudio.toolkit.17/17.0.492",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -10033,23 +10117,23 @@
         "build/imports/MSBuildCapabilities.props",
         "build/imports/NewtonsoftJsonVersionCheck.targets",
         "build/imports/PublishToMarketplace.targets",
-        "community.visualstudio.toolkit.17.17.0.430.nupkg.sha512",
+        "community.visualstudio.toolkit.17.17.0.492.nupkg.sha512",
         "community.visualstudio.toolkit.17.nuspec",
         "lib/net48/Community.VisualStudio.Toolkit.dll",
         "lib/net48/Community.VisualStudio.Toolkit.xml"
       ]
     },
-    "Community.VisualStudio.Toolkit.Analyzers/1.0.430": {
-      "sha512": "T34YABkVK5P3+gtxCq3n8wOfUR4yJBnlv6jYKu/3admm1P4E4kC+r0YH1KwTFemKTGjl8OEXZdL3xYfxNuot7Q==",
+    "Community.VisualStudio.Toolkit.Analyzers/1.0.492": {
+      "sha512": "yt0kznA33q3/brh99pGJFvrNlWRYvZyzshAOQZEePnW7Ew2ppEi7qfHv8K6RVwxaSjXSGrEOAa4zzLwbTy/aFA==",
       "type": "package",
-      "path": "community.visualstudio.toolkit.analyzers/1.0.430",
+      "path": "community.visualstudio.toolkit.analyzers/1.0.492",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "analyzers/dotnet/cs/Community.VisualStudio.Toolkit.Analyzers.dll",
-        "community.visualstudio.toolkit.analyzers.1.0.430.nupkg.sha512",
+        "community.visualstudio.toolkit.analyzers.1.0.492.nupkg.sha512",
         "community.visualstudio.toolkit.analyzers.nuspec",
         "tools/install.ps1",
         "tools/uninstall.ps1"
@@ -10524,6 +10608,78 @@
         "rulesets/MicrosoftCodeAnalysisPerformanceRulesEnabled.ruleset",
         "rulesets/MicrosoftCodeAnalysisReleaseTrackingRulesDefault.ruleset",
         "rulesets/MicrosoftCodeAnalysisReleaseTrackingRulesEnabled.ruleset",
+        "rulesets/PortedFromFxCopRulesDefault.ruleset",
+        "rulesets/PortedFromFxCopRulesEnabled.ruleset",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
+    "Microsoft.CodeAnalysis.BannedApiAnalyzers/3.3.2": {
+      "sha512": "LlcsDRSYfkJFWOdDpysY/4Ph4llHc8DLOc3roFTz9+216vl+vwVGfbys2rcSmhZCTDv/0kxSs2oOdd9SX2NiVg==",
+      "type": "package",
+      "path": "microsoft.codeanalysis.bannedapianalyzers/3.3.2",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "EULA.rtf",
+        "ThirdPartyNotices.rtf",
+        "analyzers/dotnet/cs/Microsoft.CodeAnalysis.BannedApiAnalyzers.dll",
+        "analyzers/dotnet/cs/Microsoft.CodeAnalysis.CSharp.BannedApiAnalyzers.dll",
+        "analyzers/dotnet/cs/cs/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/de/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/es/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/fr/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/it/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/ja/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/ko/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/pl/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/pt-BR/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/ru/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/tr/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/zh-Hans/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/zh-Hant/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/Microsoft.CodeAnalysis.BannedApiAnalyzers.dll",
+        "analyzers/dotnet/vb/Microsoft.CodeAnalysis.VisualBasic.BannedApiAnalyzers.dll",
+        "analyzers/dotnet/vb/cs/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/de/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/es/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/fr/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/it/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/ja/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/ko/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/pl/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/pt-BR/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/ru/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/tr/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/zh-Hans/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/zh-Hant/Microsoft.CodeAnalysis.BannedApiAnalyzers.resources.dll",
+        "build/Microsoft.CodeAnalysis.BannedApiAnalyzers.props",
+        "build/Microsoft.CodeAnalysis.BannedApiAnalyzers.targets",
+        "build/config/AnalysisLevel_2_9_8_AllDisabledByDefault.editorconfig",
+        "build/config/AnalysisLevel_2_9_8_AllEnabledByDefault.editorconfig",
+        "build/config/AnalysisLevel_2_9_8_Default.editorconfig",
+        "documentation/Analyzer Configuration.md",
+        "documentation/Microsoft.CodeAnalysis.BannedApiAnalyzers.md",
+        "documentation/Microsoft.CodeAnalysis.BannedApiAnalyzers.sarif",
+        "editorconfig/AllRulesDefault/.editorconfig",
+        "editorconfig/AllRulesDisabled/.editorconfig",
+        "editorconfig/AllRulesEnabled/.editorconfig",
+        "editorconfig/ApiDesignRulesDefault/.editorconfig",
+        "editorconfig/ApiDesignRulesEnabled/.editorconfig",
+        "editorconfig/DataflowRulesDefault/.editorconfig",
+        "editorconfig/DataflowRulesEnabled/.editorconfig",
+        "editorconfig/PortedFromFxCopRulesDefault/.editorconfig",
+        "editorconfig/PortedFromFxCopRulesEnabled/.editorconfig",
+        "microsoft.codeanalysis.bannedapianalyzers.3.3.2.nupkg.sha512",
+        "microsoft.codeanalysis.bannedapianalyzers.nuspec",
+        "rulesets/AllRulesDefault.ruleset",
+        "rulesets/AllRulesDisabled.ruleset",
+        "rulesets/AllRulesEnabled.ruleset",
+        "rulesets/ApiDesignRulesDefault.ruleset",
+        "rulesets/ApiDesignRulesEnabled.ruleset",
+        "rulesets/DataflowRulesDefault.ruleset",
+        "rulesets/DataflowRulesEnabled.ruleset",
         "rulesets/PortedFromFxCopRulesDefault.ruleset",
         "rulesets/PortedFromFxCopRulesEnabled.ruleset",
         "tools/install.ps1",
@@ -11408,20 +11564,26 @@
         "microsoft.visualstudio.sdk.nuspec"
       ]
     },
-    "Microsoft.VisualStudio.SDK.Analyzers/15.8.33": {
-      "sha512": "5rP5FqdiHID6AtB7m8LNQKXnjTFCErAtazW8gqY4z27kTp+K6S6ZMzBME7hryOCSo2laogjjL1GWp2bUaJZqRw==",
+    "Microsoft.VisualStudio.SDK.Analyzers/16.10.10": {
+      "sha512": "LuhBHy7MJJ5SjpS7J2GuHqPyL1VeqXUwYc+mTagaUCzXbNwJmLcSUAioCyQyAzPIn6qtnzuM5Lz6ULOQS3ifUA==",
       "type": "package",
-      "path": "microsoft.visualstudio.sdk.analyzers/15.8.33",
+      "path": "microsoft.visualstudio.sdk.analyzers/16.10.10",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "PackageIcon.png",
+        "analyzers/cs/Microsoft.VisualStudio.SDK.Analyzers.CodeFixes.dll",
+        "analyzers/cs/Microsoft.VisualStudio.SDK.Analyzers.CodeFixes.pdb",
         "analyzers/cs/Microsoft.VisualStudio.SDK.Analyzers.dll",
+        "analyzers/cs/Microsoft.VisualStudio.SDK.Analyzers.pdb",
+        "build/AdditionalFiles/BannedSymbols.txt",
+        "build/AdditionalFiles/vs-threading.LegacyThreadSwitchingMembers.txt",
         "build/AdditionalFiles/vs-threading.MainThreadAssertingMethods.txt",
         "build/AdditionalFiles/vs-threading.MainThreadSwitchingMethods.txt",
         "build/AdditionalFiles/vs-threading.MembersRequiringMainThread.txt",
         "build/Microsoft.VisualStudio.SDK.Analyzers.targets",
-        "microsoft.visualstudio.sdk.analyzers.15.8.33.nupkg.sha512",
+        "microsoft.visualstudio.sdk.analyzers.16.10.10.nupkg.sha512",
         "microsoft.visualstudio.sdk.analyzers.nuspec",
         "tools/install.ps1",
         "tools/uninstall.ps1"
@@ -12257,10 +12419,10 @@
         "microsoft.visualstudio.web.browserlink.12.0.nuspec"
       ]
     },
-    "Microsoft.VSSDK.BuildTools/17.0.5232": {
-      "sha512": "k2+OBg4wxpOofGrEdsm9+vQXgghOusae4f2Vo7XLbEFWv6S9zWqQ5KQ6wy1Ygu845I82CbthEiubmxtVye1fsA==",
+    "Microsoft.VSSDK.BuildTools/17.5.4074": {
+      "sha512": "2WxZzibhmV8T5HKLolzQt9SO8psKx2cLIRUbw0X8D295HtcXvzbmlXITuS9EdAQyFt0FKhOy4j96karBrvbtpQ==",
       "type": "package",
-      "path": "microsoft.vssdk.buildtools/17.0.5232",
+      "path": "microsoft.vssdk.buildtools/17.5.4074",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -12270,22 +12432,33 @@
         "PackageIcon.png",
         "build/Microsoft.VSSDK.BuildTools.props",
         "build/Microsoft.VSSDK.BuildTools.targets",
-        "microsoft.vssdk.buildtools.17.0.5232.nupkg.sha512",
+        "microsoft.vssdk.buildtools.17.5.4074.nupkg.sha512",
         "microsoft.vssdk.buildtools.nuspec",
         "tools/vssdk/Empty.resx",
+        "tools/vssdk/MessagePack.Annotations.dll",
+        "tools/vssdk/MessagePack.dll",
+        "tools/vssdk/Microsoft.Bcl.AsyncInterfaces.dll",
+        "tools/vssdk/Microsoft.IO.Redist.dll",
+        "tools/vssdk/Microsoft.Internal.VisualStudio.Shell.Framework.dll",
         "tools/vssdk/Microsoft.VisualStudio.ExtensionEngine.dll",
         "tools/vssdk/Microsoft.VisualStudio.Sdk.BuildTasks.17.0.dll",
         "tools/vssdk/Microsoft.VisualStudio.Sdk.BuildTasks.dll",
         "tools/vssdk/Microsoft.VisualStudio.Sdk.Common.targets",
         "tools/vssdk/Microsoft.VisualStudio.Setup.Common.dll",
+        "tools/vssdk/Microsoft.VisualStudio.Shell.15.0.dll",
+        "tools/vssdk/Microsoft.VisualStudio.Shell.Framework.dll",
         "tools/vssdk/Microsoft.VisualStudio.Threading.dll",
         "tools/vssdk/Microsoft.VisualStudio.Validation.dll",
         "tools/vssdk/Microsoft.VsSDK.Cpp.Overrides.targets",
         "tools/vssdk/Microsoft.VsSDK.Cpp.targets",
         "tools/vssdk/Microsoft.VsSDK.targets",
+        "tools/vssdk/Nerdbank.Streams.dll",
         "tools/vssdk/Newtonsoft.Json.dll",
         "tools/vssdk/PkgDefMgmt.dll",
         "tools/vssdk/ProjectItemsSchema.xml",
+        "tools/vssdk/System.IO.Pipelines.dll",
+        "tools/vssdk/System.Reflection.Metadata.dll",
+        "tools/vssdk/System.Threading.Tasks.Extensions.dll",
         "tools/vssdk/bin/ConvertCTCToVSCT.pl",
         "tools/vssdk/bin/CreatePkgDef.exe",
         "tools/vssdk/bin/CreatePkgDef.exe.config",
@@ -12299,34 +12472,73 @@
         "tools/vssdk/bin/VsixPublisher.exe.config",
         "tools/vssdk/bin/VsixUtil.exe",
         "tools/vssdk/bin/VsixUtil.exe.config",
+        "tools/vssdk/bin/arm64/CreatePkgDef.exe",
+        "tools/vssdk/bin/arm64/CreatePkgDef.exe.config",
+        "tools/vssdk/bin/arm64/lib/Microsoft.VisualStudio.Shell.Framework.dll",
         "tools/vssdk/bin/lib/Dia2Lib.dll",
+        "tools/vssdk/bin/lib/MessagePack.Annotations.dll",
+        "tools/vssdk/bin/lib/MessagePack.dll",
+        "tools/vssdk/bin/lib/Microsoft.Bcl.AsyncInterfaces.dll",
+        "tools/vssdk/bin/lib/Microsoft.Build.Framework.dll",
         "tools/vssdk/bin/lib/Microsoft.Diagnostics.FastSerialization.dll",
-        "tools/vssdk/bin/lib/Microsoft.Diagnostics.Tracing.EventSource.dll",
         "tools/vssdk/bin/lib/Microsoft.Diagnostics.Tracing.TraceEvent.dll",
+        "tools/vssdk/bin/lib/Microsoft.IO.Redist.dll",
         "tools/vssdk/bin/lib/Microsoft.Internal.Performance.CodeMarkers.DesignTime.dll",
+        "tools/vssdk/bin/lib/Microsoft.Internal.VisualStudio.Interop.dll",
+        "tools/vssdk/bin/lib/Microsoft.Internal.VisualStudio.Shell.Framework.dll",
+        "tools/vssdk/bin/lib/Microsoft.ServiceHub.Client.dll",
+        "tools/vssdk/bin/lib/Microsoft.ServiceHub.Framework.dll",
+        "tools/vssdk/bin/lib/Microsoft.ServiceHub.Resources.dll",
         "tools/vssdk/bin/lib/Microsoft.TeamFoundation.Common.dll",
+        "tools/vssdk/bin/lib/Microsoft.VisualStudio.ComponentModelHost.dll",
+        "tools/vssdk/bin/lib/Microsoft.VisualStudio.CoreUtility.dll",
         "tools/vssdk/bin/lib/Microsoft.VisualStudio.ExtensionEngine.dll",
+        "tools/vssdk/bin/lib/Microsoft.VisualStudio.GraphModel.dll",
+        "tools/vssdk/bin/lib/Microsoft.VisualStudio.ImageCatalog.dll",
+        "tools/vssdk/bin/lib/Microsoft.VisualStudio.Imaging.Interop.14.0.DesignTime.dll",
+        "tools/vssdk/bin/lib/Microsoft.VisualStudio.Imaging.dll",
+        "tools/vssdk/bin/lib/Microsoft.VisualStudio.Interop.dll",
+        "tools/vssdk/bin/lib/Microsoft.VisualStudio.ProjectAggregator.dll",
         "tools/vssdk/bin/lib/Microsoft.VisualStudio.RemoteControl.dll",
+        "tools/vssdk/bin/lib/Microsoft.VisualStudio.RpcContracts.dll",
         "tools/vssdk/bin/lib/Microsoft.VisualStudio.Services.Common.dll",
         "tools/vssdk/bin/lib/Microsoft.VisualStudio.Services.WebApi.dll",
         "tools/vssdk/bin/lib/Microsoft.VisualStudio.Setup.Common.dll",
         "tools/vssdk/bin/lib/Microsoft.VisualStudio.Setup.Configuration.Interop.dll",
         "tools/vssdk/bin/lib/Microsoft.VisualStudio.Setup.Download.dll",
         "tools/vssdk/bin/lib/Microsoft.VisualStudio.Setup.dll",
+        "tools/vssdk/bin/lib/Microsoft.VisualStudio.Shell.15.0.dll",
         "tools/vssdk/bin/lib/Microsoft.VisualStudio.Shell.Framework.dll",
         "tools/vssdk/bin/lib/Microsoft.VisualStudio.Telemetry.dll",
+        "tools/vssdk/bin/lib/Microsoft.VisualStudio.Text.Data.dll",
         "tools/vssdk/bin/lib/Microsoft.VisualStudio.Threading.dll",
         "tools/vssdk/bin/lib/Microsoft.VisualStudio.Utilities.Internal.dll",
+        "tools/vssdk/bin/lib/Microsoft.VisualStudio.Utilities.dll",
         "tools/vssdk/bin/lib/Microsoft.VisualStudio.Validation.dll",
+        "tools/vssdk/bin/lib/Microsoft.Win32.Registry.dll",
+        "tools/vssdk/bin/lib/Nerdbank.Streams.dll",
         "tools/vssdk/bin/lib/Newtonsoft.Json.dll",
         "tools/vssdk/bin/lib/Nuget.Packaging.Extraction.dll",
         "tools/vssdk/bin/lib/OSExtensions.dll",
+        "tools/vssdk/bin/lib/StreamJsonRpc.dll",
+        "tools/vssdk/bin/lib/System.Buffers.dll",
+        "tools/vssdk/bin/lib/System.Collections.Immutable.dll",
+        "tools/vssdk/bin/lib/System.Diagnostics.DiagnosticSource.dll",
+        "tools/vssdk/bin/lib/System.IO.Pipelines.dll",
+        "tools/vssdk/bin/lib/System.Memory.dll",
         "tools/vssdk/bin/lib/System.Net.Http.Formatting.dll",
+        "tools/vssdk/bin/lib/System.Numerics.Vectors.dll",
         "tools/vssdk/bin/lib/System.Runtime.CompilerServices.Unsafe.dll",
-        "tools/vssdk/bin/lib/System.Runtime.InteropServices.RuntimeInformation.dll",
+        "tools/vssdk/bin/lib/System.Security.AccessControl.dll",
+        "tools/vssdk/bin/lib/System.Security.Principal.Windows.dll",
+        "tools/vssdk/bin/lib/System.Threading.AccessControl.dll",
+        "tools/vssdk/bin/lib/System.Threading.Tasks.Dataflow.dll",
+        "tools/vssdk/bin/lib/System.Threading.Tasks.Extensions.dll",
         "tools/vssdk/bin/lib/System.ValueTuple.dll",
         "tools/vssdk/bin/lib/TraceReloggerLib.dll",
         "tools/vssdk/bin/lib/VsixCommandLine.dll",
+        "tools/vssdk/bin/lib/VsixPublisher.exe",
+        "tools/vssdk/bin/lib/vsixpublisher/System.Runtime.CompilerServices.Unsafe.dll",
         "tools/vssdk/bin/x86/CreatePkgDef.exe",
         "tools/vssdk/bin/x86/CreatePkgDef.exe.config",
         "tools/vssdk/bin/x86/VSCTCompress.dll",
@@ -12368,6 +12580,27 @@
         "tools/vssdk/schemas/PackageManifestSchema.xsd",
         "tools/vssdk/schemas/VSIXLanguagePackSchema.xsd",
         "tools/vssdk/schemas/VSIXManifestSchema.xsd"
+      ]
+    },
+    "Microsoft.VsSDK.CompatibilityAnalyzer/17.5.4074": {
+      "sha512": "2qc8/469BzeGN8WUGcOXNAfVGNlCzOAT9us5CVPpMvjB6oBFFgW2h+A8G4QzuGsMK5f+CbCImK3hwyzmL0N4EA==",
+      "type": "package",
+      "path": "microsoft.vssdk.compatibilityanalyzer/17.5.4074",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "PackageIcon.png",
+        "build/Microsoft.VsSDK.CompatibilityAnalyzer.props",
+        "build/Microsoft.VsSDK.CompatibilityAnalyzer.targets",
+        "license.txt",
+        "microsoft.vssdk.compatibilityanalyzer.17.5.4074.nupkg.sha512",
+        "microsoft.vssdk.compatibilityanalyzer.nuspec",
+        "tools/net472/Microsoft.VisualStudio.Sdk.CompatibilityAnalyzerTasks.dll",
+        "tools/net472/VsixCompatibilityAnalyzer.dll",
+        "tools/net6.0/Microsoft.VisualStudio.Sdk.CompatibilityAnalyzerTasks.dll",
+        "tools/net6.0/System.IO.Packaging.dll",
+        "tools/net6.0/VsixCompatibilityAnalyzer.dll"
       ]
     },
     "Microsoft.Win32.Primitives/4.3.0": {
@@ -14228,11 +14461,11 @@
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.8": [
-      "Community.VisualStudio.Toolkit.17 >= 17.0.430",
+      "Community.VisualStudio.Toolkit.17 >= 17.0.492",
       "Community.VisualStudio.VSCT >= 16.0.29.6",
       "Microsoft.CodeAnalysis.CSharp >= 4.5.0",
       "Microsoft.CodeAnalysis.Workspaces.MSBuild >= 4.5.0",
-      "Microsoft.VSSDK.BuildTools >= 17.0.5232"
+      "Microsoft.VSSDK.BuildTools >= 17.5.4074"
     ]
   },
   "packageFolders": {
@@ -14276,7 +14509,7 @@
           "Community.VisualStudio.Toolkit.17": {
             "include": "Compile, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "target": "Package",
-            "version": "[17.0.430, )"
+            "version": "[17.0.492, )"
           },
           "Community.VisualStudio.VSCT": {
             "suppressParent": "All",
@@ -14292,8 +14525,10 @@
             "version": "[4.5.0, )"
           },
           "Microsoft.VSSDK.BuildTools": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
             "target": "Package",
-            "version": "[17.0.5232, )",
+            "version": "[17.5.4074, )",
             "generatePathProperty": true
           }
         }

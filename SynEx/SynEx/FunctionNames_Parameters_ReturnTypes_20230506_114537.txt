@@ -1,0 +1,25 @@
+MyCommand
+	Task ExecuteAsync(OleMenuCmdEventArgs e)
+ClipboardManager
+	void SetTextToClipboard(List<string> items)
+DataManager
+	Task<List<string>> ExtractDetails(List<string> csFiles, int extractionLevel)
+	Task<List<string>> GetCsFilesAsync(List<ProjectItem> projectItems)
+	Task SaveCoordinatorAsync(string action)
+	Task SaveCombinedItemsToFileAsync(string nameOfAction, List<string> combinedItems)
+ExtractFolderStructure
+	Task ExtractFilesAndFolderStructureTree()
+	void ProcessProjectItems(EnvDTE.ProjectItems projectItems, List<string> fileSystemItems, string folderPath, int indentLevel)
+UserControl
+	void GetProjectItemsRecursively(ProjectItems projectItems, List<ProjectItem> allItems)
+	Task<List<ProjectItem>> GetAllCsProjectItemsAsync()
+	UserControl Initialize(IServiceProvider serviceProvider)
+	Task<string> GetSolutionPathAsync()
+IsExternalInit
+SynExMainWindow
+SynExMainWindowCommand
+	Task InitializeAsync(AsyncPackage package)
+	void Execute(object sender, EventArgs e)
+	Task ExecuteAsync()
+SynExPackage
+	Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)

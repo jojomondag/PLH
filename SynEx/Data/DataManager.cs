@@ -13,13 +13,14 @@ namespace SynEx.Data
 {
     public class DataManager
     {
-        public static async Task<List<string>> ExtractDetails(List<string> csFiles, int extractionLevel)
+        public static async Task<List<string>> ExtractDetailsAsync(List<string> csFiles, int extractionLevel)
         {
             List<string> combinedItems = new();
 
             foreach (string file in csFiles)
             {
-                string fileContent = File.ReadAllText(file);
+                string fileContent = await Task.Run(() => File.ReadAllText(file));
+
                 SyntaxTree tree = CSharpSyntaxTree.ParseText(fileContent);
                 CompilationUnitSyntax root = tree.GetCompilationUnitRoot();
 
@@ -71,18 +72,23 @@ namespace SynEx.Data
         }
         public static async Task<List<string>> GetCsFilesAsync(List<ProjectItem> projectItems)
         {
-            List<string> csFiles = new();
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            foreach (var projectItem in projectItems)
+            return await Task.Run(() =>
             {
-                if (projectItem.Name.EndsWith(".cs"))
-                {
-                    string filePath = projectItem.FileNames[0];
-                    csFiles.Add(filePath);
-                }
-            }
+                List<string> csFiles = new();
 
-            return csFiles;
+                foreach (var projectItem in projectItems)
+                {
+                    if (projectItem.Name.EndsWith(".cs"))
+                    {
+                        string filePath = projectItem.FileNames[0];
+                        csFiles.Add(filePath);
+                    }
+                }
+
+                return csFiles;
+            });
         }
         public static async Task SaveCoordinatorAsync(string action)
         {
@@ -99,22 +105,22 @@ namespace SynEx.Data
             switch (action)
             {
                 case "1":
-                    combinedItems = await ExtractDetails(csFiles, 1);
+                    combinedItems = await ExtractDetailsAsync(csFiles, 1);
                     actionName = "FunctionNames";
                     break;
 
                 case "2":
-                    combinedItems = await ExtractDetails(csFiles, 2);
+                    combinedItems = await ExtractDetailsAsync(csFiles, 2);
                     actionName = "FunctionNames_Parameters";
                     break;
 
                 case "3":
-                    combinedItems = await ExtractDetails(csFiles, 3);
+                    combinedItems = await ExtractDetailsAsync(csFiles, 3);
                     actionName = "FunctionNames_Parameters_ReturnTypes";
                     break;
 
                 case "4":
-                    combinedItems = await ExtractDetails(csFiles, 4);
+                    combinedItems = await ExtractDetailsAsync(csFiles, 4);
                     actionName = "AccessModifier_Static_FunctionNames_Parameters_ReturnTypes";
                     break;
 
@@ -144,7 +150,7 @@ namespace SynEx.Data
             // Write each item in combinedItems to the file
             foreach (string item in combinedItems)
             {
-                sw.WriteLine(item);
+                await sw.WriteLineAsync(item);
             }
         }
     }
