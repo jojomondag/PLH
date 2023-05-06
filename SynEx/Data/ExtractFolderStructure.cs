@@ -3,6 +3,7 @@ using EnvDTE;
 using SynEx.Data;
 using EnvDTE80;
 using System.Linq;
+using System.IO;
 
 namespace SynEx
 {
@@ -13,39 +14,70 @@ namespace SynEx
             DTE dte = UserControl.Instance.Dte;
             EnvDTE.Solution solution = dte.Solution;
 
-            List<string> filePaths = new List<string>();
-            List<string> folderPaths = new List<string>();
+            List<string> fileSystemItems = new List<string>();
 
+            // Get full path of the solution
+            string solutionPath = Path.GetDirectoryName(solution.FullName);
+
+            // Get all file and folder paths in the solution
             foreach (EnvDTE.Project project in solution.Projects)
             {
                 if (project.Kind != ProjectKinds.vsProjectKindSolutionFolder)
                 {
-                    ProcessProjectItems(project.ProjectItems, filePaths, folderPaths);
+                    // Get all files in the project
+                    foreach (EnvDTE.ProjectItem item in project.ProjectItems)
+                    {
+                        if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFile)
+                        {
+                            fileSystemItems.Add($"{project.Name}\\{item.Name}");
+                        }
+                    }
+
+                    // Get all folders and their files in the project
+                    foreach (EnvDTE.ProjectItem item in project.ProjectItems)
+                    {
+                        if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFolder)
+                        {
+                            string folderPath = $"{project.Name}\\{item.Name}";
+                            fileSystemItems.Add(folderPath);
+
+                            ProcessProjectItems(item.ProjectItems, fileSystemItems, folderPath, 1);
+                        }
+                    }
+                }
+                else
+                {
+                    // Get all files and folders in the solution folder
+                    ProcessProjectItems(project.ProjectItems, fileSystemItems, "", 0);
                 }
             }
 
-            // Copy the gathered file paths and folder paths to the clipboard
-            ClipboardManager.SetTextToClipboard(filePaths.Concat(folderPaths).ToList());
+            // Add solution path to the top of the output
+            fileSystemItems.Insert(0, solutionPath);
+
+            DataManager.SaveCombinedItemsToFileAsync("ExtractFolderStructureTree", fileSystemItems);
+            ClipboardManager.SetTextToClipboard(fileSystemItems);
             // Do something with filePaths and folderPaths lists if necessary
         }
 
-        private static void ProcessProjectItems(ProjectItems projectItems, List<string> filePaths, List<string> folderPaths)
+        private static void ProcessProjectItems(EnvDTE.ProjectItems projectItems, List<string> fileSystemItems, string folderPath, int indentLevel)
         {
-            foreach (ProjectItem item in projectItems)
+            foreach (EnvDTE.ProjectItem item in projectItems)
             {
-                if (item.Kind == Constants.vsProjectItemKindPhysicalFile)
+                if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFile)
                 {
-                    string filePath = item.FileNames[1];
-                    filePaths.Add(filePath);
+                    string filePath = $"{folderPath}\\{item.Name}";
+                    string indentedFilePath = new string(' ', indentLevel * 4) + filePath;
+                    fileSystemItems.Add(indentedFilePath);
                 }
-                else if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFolder)
+
+                if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFolder)
                 {
-                    string folderPath = item.FileNames[1];
-                    folderPaths.Add(folderPath);
-                    if (item.ProjectItems != null)
-                    {
-                        ProcessProjectItems(item.ProjectItems, filePaths, folderPaths);
-                    }
+                    string subFolderPath = $"{folderPath}\\{item.Name}";
+                    string indentedSubFolderPath = new string(' ', indentLevel * 4) + subFolderPath;
+                    fileSystemItems.Add(indentedSubFolderPath);
+
+                    ProcessProjectItems(item.ProjectItems, fileSystemItems, subFolderPath, indentLevel + 1);
                 }
             }
         }

@@ -69,7 +69,6 @@ namespace SynEx.Data
 
             return combinedItems;
         }
-
         public static async Task<List<string>> GetCsFilesAsync(List<ProjectItem> projectItems)
         {
             List<string> csFiles = new();
@@ -85,7 +84,6 @@ namespace SynEx.Data
 
             return csFiles;
         }
-
         public static async Task SaveCoordinatorAsync(string action)
         {
             // Get the C# project items using UserControl
@@ -97,22 +95,27 @@ namespace SynEx.Data
             string folderPath = await UserControl.Instance.GetSolutionPathAsync();
             List<string> combinedItems = new();
 
+            string actionName;
             switch (action)
             {
                 case "1":
                     combinedItems = await ExtractDetails(csFiles, 1);
+                    actionName = "FunctionNames";
                     break;
 
                 case "2":
                     combinedItems = await ExtractDetails(csFiles, 2);
+                    actionName = "FunctionNames_Parameters";
                     break;
 
                 case "3":
                     combinedItems = await ExtractDetails(csFiles, 3);
+                    actionName = "FunctionNames_Parameters_ReturnTypes";
                     break;
 
                 case "4":
                     combinedItems = await ExtractDetails(csFiles, 4);
+                    actionName = "AccessModifier_Static_FunctionNames_Parameters_ReturnTypes";
                     break;
 
                 default:
@@ -120,23 +123,25 @@ namespace SynEx.Data
                     return;
             }
 
-            await SaveCombinedItemsToFileAsync(combinedItems);
+            await SaveCombinedItemsToFileAsync(actionName, combinedItems);
             ClipboardManager.SetTextToClipboard(combinedItems);
         }
-        public static async Task SaveCombinedItemsToFileAsync(List<string> combinedItems)
+        public static async Task SaveCombinedItemsToFileAsync(string nameOfAction, List<string> combinedItems)
         {
             if (combinedItems == null || combinedItems.Count == 0) return;
 
-            // Get the solution// path and create a SynEx directory within it
+            // Get the solution path and create a SynEx directory within it
             string solutionPath = await UserControl.Instance.GetSolutionPathAsync();
             string synexPath = Path.Combine(solutionPath, "SynEx");
             Directory.CreateDirectory(synexPath);
 
             // Create a unique filename using the current date and time
-            string fileName = $"CombinedItems_{DateTime.Now:yyyyMMdd_HHmmss}.txt";
+            string fileName = $"{nameOfAction}_{DateTime.Now:yyyyMMdd_HHmmss}.txt";
             string filePath = Path.Combine(synexPath, fileName);
 
             using StreamWriter sw = new StreamWriter(filePath);
+
+            // Write each item in combinedItems to the file
             foreach (string item in combinedItems)
             {
                 sw.WriteLine(item);
