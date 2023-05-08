@@ -5,3 +5,5 @@ User Input: I am a student at the University of California, Berkeley. I am study
 Question: What is a function in Python? and how do i use it?
 
 User Input + Question + Answer: Let's work this out in a step by step way to be sure we have the right answer.
+
+Ask Chat gpt on how we can make prompts even smaller but keep context. Mathmatica nice format.
