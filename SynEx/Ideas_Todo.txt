@@ -1,0 +1,7 @@
+﻿Exampel on smarter ChatGPT.
+
+User Input: I am a student at the University of California, Berkeley. I am studying computer courser and i need to learn about Python functions.
+
+Question: What is a function in Python? and how do i use it?
+
+User Input + Question + Answer: Let's work this out in a step by step way to be sure we have the right answer.
