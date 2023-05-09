@@ -1,0 +1,32 @@
+C:\Users\Josef\Documents\GitHub\PLH\SynEx
+SynEx\source.extension.vsixmanifest
+SynEx\SynExMainWindow.cs
+SynEx\SynExMainWindowCommand.cs
+SynEx\SynExMainWindowControl.xaml
+SynEx\SynExPackage.cs
+SynEx\VSCommandTable.vsct
+SynEx\Assemblies
+    SynEx\Assemblies\Microsoft.CodeAnalysis.CSharp.dll
+    SynEx\Assemblies\Microsoft.CodeAnalysis.dll
+SynEx\Commands
+    SynEx\Commands\MainWindowExecutionCommand.cs
+SynEx\Data
+    SynEx\Data\ClipboardManager.cs
+    SynEx\Data\DataManager.cs
+    SynEx\Data\ExtractFolderStructure.cs
+    SynEx\Data\UserControl.cs
+SynEx\Initializers
+SynEx\Managers
+SynEx\Models
+SynEx\Properties
+    SynEx\Properties\AssemblyInfo.cs
+SynEx\Resources
+    SynEx\Resources\ConvertFolderToBranch.png
+    SynEx\Resources\Icon128.png
+    SynEx\Resources\Icon90.png
+    SynEx\Resources\OpenProjectFolder.png
+SynEx\Services
+    SynEx\Services\FileBrowser.cs
+SynEx\Utils
+SynEx\ViewModels
+SynEx\Views

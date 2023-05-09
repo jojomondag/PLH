@@ -8,15 +8,25 @@
              Name="MyToolWindow">
     <Grid>
         <StackPanel Orientation="Vertical">
-            <TextBlock Margin="10" HorizontalAlignment="Center" Text="Syntax Extractor">
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="Foreground" Value="Green"/>
-                        <Setter Property="FontSize" Value="20"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="SelectFolder" Width="20" Height="20" Margin="0,10,5,10" Click="SelectFolderClick">
+                    <Image Source="C:\Users\Josef\Documents\GitHub\PLH\SynEx\Resources\OpenProjectFolder.png" Stretch="Uniform"/>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <TextBlock Margin="5,10" Text="Syntax Extractor">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="Green"/>
+                            <Setter Property="FontSize" Value="20"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </StackPanel>
             <Button Content="1.Function names" Click="Extract1Click" Width="295" Height="28" x:Name="Extract1Butt">
                 <Button.Style>
                     <Style TargetType="Button">

@@ -1,0 +1,35 @@
+MainWindowExecutionCommand
+	protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)
+ClipboardManager
+	public static void SetTextToClipboard(List<string> items)
+DataManager
+	public static async Task<List<string>> ExtractDetailsAsync(List<string> csFiles, int extractionLevel)
+	public static async Task<List<string>> GetCsFilesAsync(List<ProjectItem> projectItems)
+	public static async Task SaveCoordinatorAsync(string action)
+	public static async Task SaveCombinedItemsToFileAsync(string nameOfAction, List<string> combinedItems)
+ExtractFolderStructure
+	public async Task ExtractFilesAndFolderStructureTreeAsync()
+	private static async Task ProcessProjectItemsAsync(EnvDTE.ProjectItems projectItems, List<string> fileSystemItems, string folderPath, int indentLevel, JoinableTaskFactory joinableTaskFactory)
+UserControl
+	private void GetProjectItemsRecursively(ProjectItems projectItems, List<ProjectItem> allItems)
+	public async Task<List<ProjectItem>> GetAllCsProjectItemsAsync()
+	public static UserControl Initialize(IServiceProvider serviceProvider)
+	public async Task<string> GetSolutionPathAsync()
+ExceptionHelper
+	public static async Task TryCatchAsync(Func<Task> action)
+MessageHelper
+	public static void ShowInfo(string message)
+	public static void ShowWarning(string message)
+	public static void ShowError(string message)
+	private static void ShowMessage(string message, OLEMSGICON icon)
+IsExternalInit
+DirPathPick
+	private void CreateAndShowDialog()
+SynExMainWindow
+SynExMainWindowCommand
+	public static async Task InitializeAsync(AsyncPackage package)
+	private async void Execute(object sender, EventArgs e)
+	public async Task ExecuteAsync()
+SynExPackage
+	protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+	private Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)

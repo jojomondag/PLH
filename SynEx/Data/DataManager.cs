@@ -70,6 +70,7 @@ namespace SynEx.Data
 
             return combinedItems;
         }
+
         public static async Task<List<string>> GetCsFilesAsync(List<ProjectItem> projectItems)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
@@ -98,7 +99,15 @@ namespace SynEx.Data
             // Get the C# files from the project items
             List<string> csFiles = await GetCsFilesAsync(projectItems);
 
-            string folderPath = await UserControl.Instance.GetSolutionPathAsync();
+            // Get the current project path
+            string projectPath = SynExFolder.GetProjectInfo()?.Path;
+
+            if (string.IsNullOrEmpty(projectPath))
+            {
+                MessageBox.Show("Error: Could not get project path.");
+                return;
+            }
+
             List<string> combinedItems = new();
 
             string actionName;
@@ -129,16 +138,16 @@ namespace SynEx.Data
                     return;
             }
 
-            await SaveCombinedItemsToFileAsync(actionName, combinedItems);
+            await SaveCombinedItemsToFileAsync(actionName, combinedItems, projectPath);
             ClipboardManager.SetTextToClipboard(combinedItems);
         }
-        public static async Task SaveCombinedItemsToFileAsync(string nameOfAction, List<string> combinedItems)
+
+        public static async Task SaveCombinedItemsToFileAsync(string nameOfAction, List<string> combinedItems, string projectPath)
         {
             if (combinedItems == null || combinedItems.Count == 0) return;
 
-            // Get the solution path and create a SynEx directory within it
-            string solutionPath = await UserControl.Instance.GetSolutionPathAsync();
-            string synexPath = Path.Combine(solutionPath, "SynEx");
+            // Create a SynEx directory within the project directory
+            string synexPath = Path.Combine(projectPath, "SynEx");
             Directory.CreateDirectory(synexPath);
 
             // Create a unique filename using the current date and time

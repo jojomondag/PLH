@@ -108,6 +108,7 @@ C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Release\Resources\Icon90.png
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Release\Resources\Icon128.png
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\SynEx.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Release\Microsoft.CSharp.dll
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\_EmptyResource.resources.original
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Release\Resources\ConvertFolderToBranch.png
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\VSCT.read.1.tlog
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\VSCT.write.1.tlog
-C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\_EmptyResource.resources.original

@@ -65,7 +65,7 @@ namespace SynEx
             // Add solution path to the top of the output
             fileSystemItems.Insert(0, solutionPath);
 
-            await DataManager.SaveCombinedItemsToFileAsync("ExtractFolderStructureTree", fileSystemItems);
+            //await DataManager.SaveCombinedItemsToFileAsync("ExtractFolderStructureTree", fileSystemItems);
             ClipboardManager.SetTextToClipboard(fileSystemItems);
             // Do something with filePaths and folderPaths lists if necessary
         }
