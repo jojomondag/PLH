@@ -62,6 +62,14 @@
               "target": "Package",
               "version": "[17.5.4074, )",
               "generatePathProperty": true
+            },
+            "Microsoft.VisualStudio.ProjectSystem": {
+              "target": "Package",
+              "version": "[15.8.243, )"
+            },
+            "System.IO.FileSystem": {
+              "target": "Package",
+              "version": "[4.3.0, )"
             }
           }
         }

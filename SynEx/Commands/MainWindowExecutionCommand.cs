@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.Design;
+﻿using System.Threading.Tasks;
+using Community.VisualStudio.Toolkit;
+using Microsoft.VisualStudio.Shell;
 
 namespace SynEx
 {

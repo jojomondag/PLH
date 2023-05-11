@@ -1,0 +1,38 @@
+C:\Users\Josef\Documents\GitHub\PLH\SynEx
+SynEx\mainWindowControl.xaml
+SynEx\Monikers.imagemanifest
+SynEx\source.extension.vsixmanifest
+SynEx\SynExMainWindow.cs
+SynEx\VSCommandTable.vsct
+SynEx\Assemblies
+    SynEx\Assemblies\Microsoft.CodeAnalysis.CSharp.dll
+    SynEx\Assemblies\Microsoft.CodeAnalysis.dll
+SynEx\Commands
+    SynEx\Commands\MainWindowExecutionCommand.cs
+    SynEx\Commands\SynExMainWindowCommand.cs
+SynEx\Data
+    SynEx\Data\DataManager.cs
+    SynEx\Data\ProjectFileFinder.cs
+SynEx\Helpers
+    SynEx\Helpers\ExceptionHelper.cs
+    SynEx\Helpers\MessageHelper.cs
+SynEx\Managers
+    SynEx\Managers\JSONCommunicator.cs
+SynEx\Properties
+    SynEx\Properties\AssemblyInfo.cs
+SynEx\Resources
+    SynEx\Resources\ConvertFolderToBranch.png
+    SynEx\Resources\Icon128.png
+    SynEx\Resources\Icon90.png
+    SynEx\Resources\OpenProjectFolder.png
+SynEx\Services
+    SynEx\Services\DTEProvider.cs
+    SynEx\Services\SynExDataExtractor.cs
+SynEx\Startup
+    SynEx\Startup\SynExInitializer.cs
+    SynEx\Startup\SynExPackage.cs
+SynEx\UI
+    SynEx\UI\ViewModels
+SynEx\Utils
+    SynEx\Utils\ClipboardManager.cs
+    SynEx\Utils\DirPathPick.cs

@@ -1,147 +1,82 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using MessageBox = System.Windows.MessageBox;
-using EnvDTE;
+using Microsoft.VisualStudio.Threading;
+using SynEx.Services;
+using System;
+using SynEx.Helpers;
+using SynEx.Utils;
 
 namespace SynEx.Data
 {
     public class DataManager
     {
-        public static async Task<List<string>> ExtractDetailsAsync(List<string> csFiles, int extractionLevel)
+        public static async Task ProcessProjectItemsAsync(EnvDTE.ProjectItems projectItems, List<string> fileSystemItems, string folderPath, int indentLevel, JoinableTaskFactory joinableTaskFactory)
         {
-            List<string> combinedItems = new();
-
-            foreach (string file in csFiles)
+            foreach (EnvDTE.ProjectItem item in projectItems)
             {
-                string fileContent = await Task.Run(() => File.ReadAllText(file));
-
-                SyntaxTree tree = CSharpSyntaxTree.ParseText(fileContent);
-                CompilationUnitSyntax root = tree.GetCompilationUnitRoot();
-
-                var classDeclarations = root.DescendantNodes().OfType<ClassDeclarationSyntax>();
-                foreach (var classDeclaration in classDeclarations)
+                if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFile)
                 {
-                    string className = classDeclaration.Identifier.ValueText;
-                    combinedItems.Add(className);
+                    string filePath = $"{folderPath}\\{item.Name}";
+                    string indentedFilePath = new string(' ', indentLevel * 4) + filePath;
+                    fileSystemItems.Add(indentedFilePath);
+                }
+                if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFolder)
+                {
+                    string subFolderPath = $"{folderPath}\\{item.Name}";
+                    string indentedSubFolderPath = new string(' ', indentLevel * 4) + subFolderPath;
+                    fileSystemItems.Add(indentedSubFolderPath);
 
-                    var methodDeclarations = classDeclaration.DescendantNodes().OfType<MethodDeclarationSyntax>();
-                    foreach (var methodDeclaration in methodDeclarations)
-                    {
-                        StringBuilder sb = new();
-
-                        if (extractionLevel >= 4)
-                        {
-                            var modifiers = methodDeclaration.Modifiers;
-                            foreach (var modifier in modifiers)
-                            {
-                                sb.Append(modifier.ValueText + " ");
-                            }
-                        }
-
-                        if (extractionLevel >= 3)
-                        {
-                            sb.Append(methodDeclaration.ReturnType.ToString() + " ");
-                        }
-
-                        sb.Append(methodDeclaration.Identifier.ValueText);
-
-                        if (extractionLevel >= 2)
-                        {
-                            sb.Append("(");
-                            var parameters = methodDeclaration.ParameterList.Parameters;
-                            for (int i = 0; i < parameters.Count; i++)
-                            {
-                                sb.Append(parameters[i].ToString());
-                                if (i < parameters.Count - 1) sb.Append(", ");
-                            }
-                            sb.Append(")");
-                        }
-
-                        combinedItems.Add("\t" + sb.ToString());
-                    }
+                    await ProcessProjectItemsAsync(item.ProjectItems, fileSystemItems, subFolderPath, indentLevel + 1, joinableTaskFactory);
                 }
             }
-
-            return combinedItems;
-        }
-
-        public static async Task<List<string>> GetCsFilesAsync(List<ProjectItem> projectItems)
-        {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            return await Task.Run(() =>
-            {
-                List<string> csFiles = new();
-
-                foreach (var projectItem in projectItems)
-                {
-                    if (projectItem.Name.EndsWith(".cs"))
-                    {
-                        string filePath = projectItem.FileNames[0];
-                        csFiles.Add(filePath);
-                    }
-                }
-
-                return csFiles;
-            });
         }
         public static async Task SaveCoordinatorAsync(string action)
         {
-            // Get the C# project items using UserControl
-            List<ProjectItem> projectItems = await UserControl.Instance.GetAllCsProjectItemsAsync();
 
-            // Get the C# files from the project items
-            List<string> csFiles = await GetCsFilesAsync(projectItems);
+            // Get all file system items in the current solution
+            IEnumerable<string> fileSystemItems = DTEProvider.GetAllProjectFileSystemItems(DTEProvider.Instance.Solution);
 
-            // Get the current project path
-            string projectPath = SynExFolder.GetProjectInfo()?.Path;
-
-            if (string.IsNullOrEmpty(projectPath))
-            {
-                MessageBox.Show("Error: Could not get project path.");
-                return;
-            }
-
+            // Get the C# files from the file system items
+            List<string> csFiles = fileSystemItems.Where(item => item.EndsWith(".cs", StringComparison.OrdinalIgnoreCase)).ToList();
             List<string> combinedItems = new();
 
             string actionName;
+
+            // Create an instance of CodeParser
+            SynExDataExtractor codeParser = new SynExDataExtractor();
+
             switch (action)
             {
                 case "1":
-                    combinedItems = await ExtractDetailsAsync(csFiles, 1);
+                    combinedItems = await codeParser.ExtractDetailsAsync(csFiles, 1);
                     actionName = "FunctionNames";
                     break;
 
                 case "2":
-                    combinedItems = await ExtractDetailsAsync(csFiles, 2);
+                    combinedItems = await codeParser.ExtractDetailsAsync(csFiles, 2);
                     actionName = "FunctionNames_Parameters";
                     break;
 
                 case "3":
-                    combinedItems = await ExtractDetailsAsync(csFiles, 3);
+                    combinedItems = await codeParser.ExtractDetailsAsync(csFiles, 3);
                     actionName = "FunctionNames_Parameters_ReturnTypes";
                     break;
 
                 case "4":
-                    combinedItems = await ExtractDetailsAsync(csFiles, 4);
+                    combinedItems = await codeParser.ExtractDetailsAsync(csFiles, 4);
                     actionName = "AccessModifier_Static_FunctionNames_Parameters_ReturnTypes";
                     break;
 
                 default:
-                    MessageBox.Show("Error: Unrecognized action.");
+                    MessageHelper.ShowError("Error: Unrecognized action.");
                     return;
             }
 
-            await SaveCombinedItemsToFileAsync(actionName, combinedItems, projectPath);
             ClipboardManager.SetTextToClipboard(combinedItems);
         }
-
         public static async Task SaveCombinedItemsToFileAsync(string nameOfAction, List<string> combinedItems, string projectPath)
         {
             if (combinedItems == null || combinedItems.Count == 0) return;
