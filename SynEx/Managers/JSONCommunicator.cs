@@ -24,8 +24,7 @@ namespace SynEx.Managers
                 Directory.CreateDirectory(_defaultPath);
             }
         }
-
-        public Dictionary<string, object> Load(string filePath)
+        public List<Dictionary<string, object>> Load(string filePath)
         {
             if (!File.Exists(filePath))
             {
@@ -33,7 +32,7 @@ namespace SynEx.Managers
             }
 
             string jsonData = File.ReadAllText(filePath);
-            return JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonData);
+            return JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(jsonData);
         }
         public async Task Save(string selectedPath)
         {

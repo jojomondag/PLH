@@ -8,6 +8,7 @@ using SynEx.Services;
 using System;
 using SynEx.Helpers;
 using SynEx.Utils;
+using SynEx.Managers;
 
 namespace SynEx.Data
 {
@@ -35,7 +36,6 @@ namespace SynEx.Data
         }
         public static async Task SaveCoordinatorAsync(string action)
         {
-
             // Get all file system items in the current solution
             IEnumerable<string> fileSystemItems = DTEProvider.GetAllProjectFileSystemItems(DTEProvider.Instance.Solution);
 
@@ -69,6 +69,10 @@ namespace SynEx.Data
                     combinedItems = await codeParser.ExtractDetailsAsync(csFiles, 4);
                     actionName = "AccessModifier_Static_FunctionNames_Parameters_ReturnTypes";
                     break;
+                case "5":
+                    combinedItems = await codeParser.ExtractFilesAndFolderStructureTreeAsync();
+                    actionName = "ExtractFolderStructure";
+                    break;
 
                 default:
                     MessageHelper.ShowError("Error: Unrecognized action.");
@@ -76,26 +80,47 @@ namespace SynEx.Data
             }
 
             ClipboardManager.SetTextToClipboard(combinedItems);
+            SaveCombinedItemsToFileAsync(actionName, combinedItems);
         }
-        public static async Task SaveCombinedItemsToFileAsync(string nameOfAction, List<string> combinedItems, string projectPath)
+        public static async Task SaveCombinedItemsToFileAsync(string nameOfAction, List<string> combinedItems)
         {
-            if (combinedItems == null || combinedItems.Count == 0) return;
+            JSONCommunicator jsonCommunicator = new JSONCommunicator();
+            string jsonFilePath = Path.Combine(jsonCommunicator.GetDefaultPath(), "SynEx.json");
 
-            // Create a SynEx directory within the project directory
-            string synexPath = Path.Combine(projectPath, "SynEx");
-            Directory.CreateDirectory(synexPath);
-
-            // Create a unique filename using the current date and time
-            string fileName = $"{nameOfAction}_{DateTime.Now:yyyyMMdd_HHmmss}.txt";
-            string filePath = Path.Combine(synexPath, fileName);
-
-            using StreamWriter sw = new StreamWriter(filePath);
-
-            // Write each item in combinedItems to the file
-            foreach (string item in combinedItems)
+            if (!File.Exists(jsonFilePath))
             {
-                await sw.WriteLineAsync(item);
+                throw new FileNotFoundException($"The JSON file '{jsonFilePath}' does not exist.");
+            }
+
+            List<Dictionary<string, object>> data = jsonCommunicator.Load(jsonFilePath);
+
+            string projectName = DTEProvider.GetActiveProjectName();
+            if (projectName == null)
+            {
+                return;
+            }
+
+            var projectData = data.FirstOrDefault(d => d.ContainsKey("projectName") && d["projectName"].ToString() == projectName);
+
+            if (projectData == null)
+            {
+                return;
+            }
+
+            if (!projectData.ContainsKey("selectedPath"))
+            {
+                return;
+            }
+
+            string selectedPath = projectData["selectedPath"].ToString();
+
+            string textFilePath = Path.Combine(selectedPath, $"{nameOfAction}.txt");
+            using (StreamWriter outputFile = new StreamWriter(textFilePath))
+            {
+                foreach (string line in combinedItems)
+                    await outputFile.WriteLineAsync(line);
             }
         }
+
     }
 }

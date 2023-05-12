@@ -10,8 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using SynEx.Data;
 using EnvDTE;
-using SynEx.Managers;
-
 
 namespace SynEx.Services
 {
@@ -80,18 +78,13 @@ namespace SynEx.Services
 
             return combinedItems;
         }
-        public async Task ExtractFilesAndFolderStructureTreeAsync()
+        public async Task<List<string>> ExtractFilesAndFolderStructureTreeAsync()
         {
             DTE dte = DTEProvider.Instance;
 
             List<string> fileSystemItems = new List<string>();
 
             string solutionPath = Path.GetDirectoryName(dte.Solution.FullName);
-
-            // Get the user-defined output directory from the project info file
-            string projectName = dte.Solution.Projects.OfType<EnvDTE.Project>().FirstOrDefault()?.Name;
-
-            JSONCommunicator communicator = new JSONCommunicator();
 
             // Create a JoinableTaskFactory instance
             JoinableTaskFactory joinableTaskFactory = ThreadHelper.JoinableTaskFactory;
@@ -133,9 +126,7 @@ namespace SynEx.Services
             // Add the solution path to the beginning of the list
             fileSystemItems.Insert(0, solutionPath);
 
-            // Save the file system items to a text file in the default output directory
-            string outputFilePath = Path.Combine(communicator.GetDefaultPath(), "ExtractedFileSystemItems.txt");
-            await DataManager.SaveCombinedItemsToFileAsync("ExtractedFileSystemItems", fileSystemItems, communicator.GetDefaultPath());
+            return fileSystemItems;
         }
     }
 }

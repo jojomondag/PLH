@@ -1,0 +1,47 @@
+MainWindowExecutionCommand
+	protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)
+SynExMainWindowCommand
+	public static async Task InitializeAsync(AsyncPackage package)
+	private async void Execute(object sender, EventArgs e)
+	public async Task ExecuteAsync()
+DataManager
+	public static async Task ProcessProjectItemsAsync(EnvDTE.ProjectItems projectItems, List<string> fileSystemItems, string folderPath, int indentLevel, JoinableTaskFactory joinableTaskFactory)
+	public static async Task SaveCoordinatorAsync(string action)
+	public static async Task SaveCombinedItemsToFileAsync(string nameOfAction, List<string> combinedItems)
+ProjectFileFinder
+	private void FindProjectFilesRecursively(EnvDTE.ProjectItems projectItems, List<EnvDTE.ProjectItem> projectFiles)
+	public static async Task<List<string>> GetCsFilesAsync(List<ProjectItem> projectItems)
+	public async Task<List<EnvDTE.ProjectItem>> FindAllProjectFilesAsync()
+ExceptionHelper
+	public static async Task TryCatchAsync(Func<Task> action)
+	public static T TryCatch(Func<T> action)
+	public static async Task<T> TryCatchAsync(Func<Task<T>> action)
+MessageHelper
+	public static void ShowInfo(string message)
+	public static void ShowWarning(string message)
+	public static void ShowError(string message)
+	public static void ShowMessage(string message, OLEMSGICON icon)
+JSONCommunicator
+	public List<Dictionary<string, object>> Load(string filePath)
+	public async Task Save(string selectedPath)
+	public string GetDefaultPath()
+IsExternalInit
+DTEProvider
+	public static IEnumerable<string> GetAllProjectFileSystemItems(Solution solution)
+	private static void TraverseProjectItems(ProjectItems projectItems, List<string> fileSystemItems)
+	public static string GetActiveProjectName()
+	public static string GetActiveProjectPath()
+SynExDataExtractor
+	public async Task<List<string>> ExtractDetailsAsync(List<string> csFiles, int extractionLevel)
+	public async Task ExtractFilesAndFolderStructureTreeAsync()
+SynExInitializer
+	public async Task InitializeAsync()
+SynExPackage
+	protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+	private Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+SynExMainWindow
+ClipboardManager
+	public static void SetTextToClipboard(List<string> items)
+DirPathPick
+	public async void SetProjectPath(string selectedProjectPath)
+	public void CreateAndShowDialog()

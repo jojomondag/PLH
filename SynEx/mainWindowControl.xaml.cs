@@ -55,9 +55,7 @@ namespace SynEx
         {
             await ExceptionHelper.TryCatchAsync(async () =>
             {
-                var joinableTaskFactory = ThreadHelper.JoinableTaskFactory;
-                var extractor = new SynExDataExtractor();
-                await extractor.ExtractFilesAndFolderStructureTreeAsync();
+                await ExtractClickAsync("5");
             });
         }
         private async Task ExtractClickAsync(string action)
