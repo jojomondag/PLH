@@ -181,3 +181,6 @@ C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\Microsoft.Win32.Registry.dll
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\System.Security.AccessControl.dll
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\System.Security.Principal.Windows.dll
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\System.Threading.Tasks.Dataflow.dll
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\VSCT.read.1.tlog
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\VSCT.write.1.tlog
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\_EmptyResource.resources.original

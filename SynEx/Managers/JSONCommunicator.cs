@@ -39,7 +39,7 @@ namespace SynEx.Managers
         {
             // Get the active project name and path
             string projectName = DTEProvider.GetActiveProjectName();
-            string projectPath = DTEProvider.GetActiveProjectPath();  // New line
+            string projectPath = DTEProvider.GetActiveProjectPath();
 
             MessageHelper.ShowMessage(projectName, new Microsoft.VisualStudio.Shell.Interop.OLEMSGICON());
             MessageHelper.ShowMessage(selectedPath, new Microsoft.VisualStudio.Shell.Interop.OLEMSGICON());
@@ -49,6 +49,13 @@ namespace SynEx.Managers
             {
                 // One or more values are null, do not save
                 return;
+            }
+
+            // Create a new folder in the selected path with the project name
+            string newFolderPath = Path.Combine(selectedPath, projectName);
+            if (!Directory.Exists(newFolderPath))
+            {
+                Directory.CreateDirectory(newFolderPath);
             }
 
             // Construct the full file path for SynEx.json
@@ -83,18 +90,17 @@ namespace SynEx.Managers
             {
                 // The new project doesn't exist, add it to the list
                 Dictionary<string, object> newProject = new Dictionary<string, object>
-        {
-            {"projectName", projectName},
-            {"projectPath", projectPath},
-            {"selectedPath", selectedPath}
-        };
+                {
+                    {"projectName", projectName},
+                    {"projectPath", projectPath},
+                    {"selectedPath", newFolderPath} // Update this to point to the new folder
+                };
                 data.Add(newProject);
             }
             else
             {
-                // The project with this name already exists, update the project path and selected path
-                existingProject["projectPath"] = projectPath;
-                existingProject["selectedPath"] = selectedPath;
+                // The project with this name already exists, update the selected path
+                existingProject["selectedPath"] = newFolderPath; // Update this to point to the new folder
             }
 
             // Convert the data to a JSON string
