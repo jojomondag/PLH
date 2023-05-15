@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
-             Name="MyToolWindow">
+             Name="MyToolWindow"
+             Loaded="UserControl_Loaded">
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -55,7 +56,7 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Width="295" Height="28" Click="ExtractFolderStructureClick">
+            <Button x:Name="ExtractFolderStructureTreeButton" Width="295" Height="28" Click="ExtractFolderStructureClick">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="C:\Users\Josef\Documents\GitHub\PLH\SynEx\Resources\ConvertFolderToBranch.png" Width="16" Height="16" Margin="0,0,5,0" />
                     <TextBlock Text="Extract folderstructure tree" VerticalAlignment="Center" />
