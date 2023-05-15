@@ -6,13 +6,14 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SynEx.Starup
+namespace SynEx.Startup
 {
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration(Vsix.Name, Vsix.Description, Vsix.Version)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [Guid(PackageGuids.SynExString)]
     [ProvideToolWindow(typeof(SynExMainWindow))]
+    [ProvideAutoLoad(Microsoft.VisualStudio.Shell.Interop.UIContextGuids.NoSolution, PackageAutoLoadFlags.BackgroundLoad)]
     public sealed class SynExPackage : AsyncPackage
     {
         public SynExPackage()
@@ -22,8 +23,12 @@ namespace SynEx.Starup
 
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
+            await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+
             SynExInitializer initializer = new SynExInitializer();
             await initializer.InitializeAsync();
+            await SynExMainWindowCommand.InitializeAsync(this);
+            await MainWindowExecutionCommand.InitializeAsync(this); // Initialize the MainWindowExecutionCommand here
         }
 
         private Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)

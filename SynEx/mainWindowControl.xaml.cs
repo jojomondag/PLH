@@ -2,12 +2,8 @@
 using SynEx.Helpers;
 using System.Windows;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.Shell;
-using SynEx.Services;
 using SynEx.Utils;
-using SynEx.Managers;
 
-#pragma warning disable VSTHRD100 // Avoid async void methods
 namespace SynEx
 {
     public partial class SynExMainWindowControl
@@ -64,4 +60,3 @@ namespace SynEx
         }
     }
 }
-#pragma warning restore VSTHRD100 // Avoid async void methods

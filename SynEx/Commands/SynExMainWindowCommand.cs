@@ -1,16 +1,15 @@
 ﻿using System.ComponentModel.Design;
-using System.Windows;
 using System;
 using Microsoft.VisualStudio.Shell;
 using System.Threading.Tasks;
+using SynEx.Helpers;
 
 namespace SynEx
 {
     internal sealed class SynExMainWindowCommand
     {
-        public const int CommandId = 256;
-
-        public static readonly Guid CommandSet = new("924599ce-e991-459e-becd-2d2b29abd238");
+        public const int CommandId = 0x0100;
+        public static readonly Guid CommandSet = new("a2a86f81-8cba-4fca-93c0-46965a98b8c1");
 
         private readonly AsyncPackage package;
 
@@ -20,16 +19,14 @@ namespace SynEx
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
 
             var menuCommandID = new CommandID(CommandSet, CommandId);
-            var menuItem = new MenuCommand(this.Execute, menuCommandID);
+            var menuItem = new MenuCommand(Execute, menuCommandID);
             commandService.AddCommand(menuItem);
         }
-
         public static SynExMainWindowCommand Instance
         {
             get;
             private set;
         }
-
         public static async Task InitializeAsync(AsyncPackage package)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
@@ -37,32 +34,21 @@ namespace SynEx
             OleMenuCommandService commandService = await package.GetServiceAsync((typeof(IMenuCommandService))) as OleMenuCommandService;
             Instance = new SynExMainWindowCommand(package, commandService);
         }
-
-#pragma warning disable VSTHRD100 // Avoid async void methods
-
         private async void Execute(object sender, EventArgs e)
-#pragma warning restore VSTHRD100 // Avoid async void methods
         {
-            try
-            {
-                await ExecuteAsync();
-            }
-            catch (Exception ex)
-            {
-                System.Windows.MessageBox.Show($"Oops! Something went wrong: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
+            await ExceptionHelper.TryCatchAsync(ExecuteAsync);
+        }
         public async Task ExecuteAsync()
         {
-            await this.package.JoinableTaskFactory.RunAsync(async delegate
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            ToolWindowPane window = await this.package.ShowToolWindowAsync(typeof(SynExMainWindow), 0, true, this.package.DisposalToken);
+            if ((null == window) || (null == window.Frame))
             {
-                ToolWindowPane window = await this.package.ShowToolWindowAsync(typeof(SynExMainWindow), 0, true, this.package.DisposalToken);
-                if ((null == window) || (null == window.Frame))
-                {
-                    throw new NotSupportedException("Cannot create tool window");
-                }
-            });
+                throw new NotSupportedException("Cannot create tool window");
+            }
         }
     }
 }

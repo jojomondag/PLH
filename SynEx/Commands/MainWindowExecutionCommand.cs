@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using Community.VisualStudio.Toolkit;
+﻿using Community.VisualStudio.Toolkit;
 using Microsoft.VisualStudio.Shell;
+using System.Threading.Tasks;
 
 namespace SynEx
 {

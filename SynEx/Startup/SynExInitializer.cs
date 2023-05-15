@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace SynEx.Starup
+namespace SynEx.Startup
 {
     internal class SynExInitializer
     {

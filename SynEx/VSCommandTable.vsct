@@ -12,19 +12,16 @@
 			  <Parent guid="VSMainMenu" id="IDM_VS_MENU_EXTENSIONS" />
 		  </Group>
 	  </Groups>
-
-    <!--This section defines the elements the user can interact with, like a menu command or a button
-        or combo box in a toolbar. -->
-    <Buttons>
-      <Button guid="SynEx" id="MyCommand" priority="0x0100" type="Button">
-        <Parent guid="SynEx" id="MyMenuGroup" />
-        <Icon guid="ImageCatalogGuid" id="TermExtraction" />
-        <CommandFlag>IconIsMoniker</CommandFlag>
-        <Strings>
-          <ButtonText>Extract Syntax</ButtonText>
-          <LocCanonicalName>.SynEx.MyCommand</LocCanonicalName>
-        </Strings>
-      </Button>
+        <Buttons>
+			<Button guid="SynEx" id="MyCommand" priority="0x0100" type="Button">
+				<Parent guid="SynEx" id="MyMenuGroup" />
+				<Icon guid="ImageCatalogGuid" id="TermExtraction" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Extract Syntax</ButtonText>
+					<LocCanonicalName>.SynEx.MyCommand</LocCanonicalName>
+				</Strings>
+			</Button>
       <Button guid="guidSynExPackageCmdSet" id="cmdidSynExMainWindowCommand" priority="0x0100" type="Button">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1" />
         <Icon guid="guidImages" id="bmpPic1" />
@@ -34,19 +31,16 @@
       </Button>
     </Buttons>
   </Commands>
-
-  <Symbols>
-    <GuidSymbol name="SynEx" value="{d309f791-903f-11d0-9efc-00a0c911004f}">
-        <IDSymbol name="IDM_VS_MENU_EXTENSIONS" value="0x0091" />
-        <IDSymbol name="MyMenuGroup" value="0x0001" />
-        <IDSymbol name="MyCommand" value="0x0100" />
-    </GuidSymbol>
-  
-    <GuidSymbol value="{924599ce-e991-459e-becd-2d2b29abd238}" name="guidSynExPackageCmdSet">
-      <IDSymbol value="256" name="cmdidSynExMainWindowCommand" />
-    </GuidSymbol>
-  
-    <GuidSymbol value="{445fd698-8c2c-45d7-9c14-b1cc1e9f4ed0}" name="guidImages">
+	<Symbols>
+	<GuidSymbol name="SynEx" value="{d309f791-903f-11d0-9efc-00a0c911004f}">
+		<IDSymbol name="IDM_VS_MENU_EXTENSIONS" value="0x0091" />
+		<IDSymbol name="MyMenuGroup" value="0x0001" />
+		<IDSymbol name="MyCommand" value="0x0100" />
+	</GuidSymbol>
+	<GuidSymbol value="{a2a86f81-8cba-4fca-93c0-46965a98b8c1}" name="guidSynExPackageCmdSet">
+		<IDSymbol value="256" name="cmdidSynExMainWindowCommand" />
+	</GuidSymbol>
+	<GuidSymbol value="{445fd698-8c2c-45d7-9c14-b1cc1e9f4ed0}" name="guidImages">
       <IDSymbol name="bmpPic1" value="1" />
       <IDSymbol name="bmpPic2" value="2" />
       <IDSymbol name="bmpPicSearch" value="3" />
