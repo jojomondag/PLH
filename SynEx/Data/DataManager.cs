@@ -121,6 +121,5 @@ namespace SynEx.Data
                     await outputFile.WriteLineAsync(line);
             }
         }
-
     }
 }

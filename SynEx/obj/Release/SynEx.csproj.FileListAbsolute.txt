@@ -183,3 +183,6 @@ C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\SynEx.latest.pkgdef
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\extension.vsixmanifest
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\files.json
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\createTemplateManifests.cache
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\VSCT.read.1.tlog
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\VSCT.write.1.tlog
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Release\_EmptyResource.resources.original

@@ -29,7 +29,6 @@ namespace SynEx.Helpers
                 return default(T);
             }
         }
-
         public static async Task<T> TryCatchAsync<T>(Func<Task<T>> action)
         {
             try

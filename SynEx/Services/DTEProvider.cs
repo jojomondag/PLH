@@ -87,6 +87,5 @@ namespace SynEx.Services
             MessageHelper.ShowWarning("No project selected. Please select a project in the Solution Explorer. The project has to be maximized for it to be selected");
             return null;
         }
-
     }
 }

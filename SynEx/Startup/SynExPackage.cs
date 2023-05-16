@@ -20,17 +20,12 @@ namespace SynEx.Startup
         {
             AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
         }
-
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
-
-            SynExInitializer initializer = new SynExInitializer();
-            await initializer.InitializeAsync();
             await SynExMainWindowCommand.InitializeAsync(this);
             await MainWindowExecutionCommand.InitializeAsync(this); // Initialize the MainWindowExecutionCommand here
         }
-
         private Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
         {
             var assemblyName = new AssemblyName(args.Name);
@@ -55,7 +50,6 @@ namespace SynEx.Startup
                     return Assembly.LoadFrom(assemblyPath);
                 }
             }
-
             return null;
         }
     }

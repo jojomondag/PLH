@@ -1,9 +1,5 @@
-﻿using Newtonsoft.Json;
-using SynEx.Services;
-using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using System;
-using System.IO;
 using SynEx.Managers;
 
 namespace SynEx.Utils

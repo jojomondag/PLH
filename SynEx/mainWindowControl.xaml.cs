@@ -12,7 +12,6 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using System.Windows.Controls;
-using EnvDTE;
 
 namespace SynEx
 {
@@ -43,11 +42,6 @@ namespace SynEx
             });
 
             return VSConstants.S_OK;
-        }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
         private async void SelectFolderClick(object sender, RoutedEventArgs e)
         {

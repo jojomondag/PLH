@@ -166,6 +166,7 @@ C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\mainWindowControl.g.cs
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\SynEx_MarkupCompile.cache
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\SynEx.g.resources
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\_EmptyResource.resources
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\SynEx.Properties.Resources.resources
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\SynEx.csproj.GenerateResource.cache
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\VSCommandTable.cto
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\resources.json
@@ -184,4 +185,4 @@ C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\createTemplateManifests.cach
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\extension.vsixmanifest
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\VSCT.read.1.tlog
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\VSCT.write.1.tlog
-C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\_EmptyResource.resources.original
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\.resources

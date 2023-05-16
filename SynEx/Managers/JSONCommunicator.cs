@@ -49,14 +49,12 @@ namespace SynEx.Managers
                 // One or more values are null, do not save
                 return;
             }
-
             // Create a new folder in the selected path with the project name
             string newFolderPath = Path.Combine(selectedPath, projectName);
             if (!Directory.Exists(newFolderPath))
             {
                 Directory.CreateDirectory(newFolderPath);
             }
-
             // Construct the full file path for SynEx.json
             string fileName = "SynEx.json";
             string filePath = Path.Combine(_defaultPath, fileName);
