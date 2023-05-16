@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 using SynEx.Helpers;
@@ -54,15 +55,15 @@ namespace SynEx.Services
         }
         public static string GetActiveProjectName()
         {
-           //Get the currently selected project in the Solution Explorer
-            var selectedProject = Instance.SelectedItems.Item(1).Project;
-            if (selectedProject != null)
+            var activeProjects = Instance.ActiveSolutionProjects as Array;
+            if (activeProjects != null && activeProjects.Length > 0)
             {
-                return selectedProject.Name;
+                Project activeProject = activeProjects.GetValue(0) as Project;
+                return activeProject?.Name;
             }
 
             return null;
-        }
+        }        
         //Create a function that gets the path to active project
         public static string GetActiveProjectPath()
         {

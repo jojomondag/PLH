@@ -182,3 +182,6 @@ C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\extension.vsixmanifest
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\files.json
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\createTemplateManifests.cache
 C:\Users\Josef\Documents\GitHub\PLH\SynEx\bin\Debug\extension.vsixmanifest
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\VSCT.read.1.tlog
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\VSCT.write.1.tlog
+C:\Users\Josef\Documents\GitHub\PLH\SynEx\obj\Debug\_EmptyResource.resources.original

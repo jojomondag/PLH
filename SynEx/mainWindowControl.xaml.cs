@@ -12,10 +12,11 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using System.Windows.Controls;
+using EnvDTE;
 
 namespace SynEx
 {
-    public partial class SynExMainWindowControl : UserControl, IVsSolutionEvents
+    public partial class SynExMainWindowControl : UserControl, IVsSolutionEvents2
     {
         private IVsSolution solution;
         private uint solutionEventsCookie;
@@ -32,21 +33,21 @@ namespace SynEx
                 solution.AdviseSolutionEvents(this, out solutionEventsCookie);
             }
         }
-        // Implement the OnAfterOpenSolution event
         public int OnAfterOpenSolution(object pUnkReserved, int fNewSolution)
         {
-            // A solution has been opened, now you can safely check the active project
-            Dispatcher.Invoke(() =>
+            Dispatcher.InvokeAsync(async () =>
             {
+                await Task.Delay(500); // Delay for 500 milliseconds (adjust as needed)
+
                 UpdateButtonsState();
             });
 
-            // Return the success HRESULT
             return VSConstants.S_OK;
         }
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            UpdateButtonsState();
+
         }
         private async void SelectFolderClick(object sender, RoutedEventArgs e)
         {
@@ -64,9 +65,12 @@ namespace SynEx
             JSONCommunicator jsonCommunicator = new JSONCommunicator();
 
             string currentProjectName = DTEProvider.GetActiveProjectName();
+            MessageHelper.ShowMessage("JOJO" + currentProjectName, OLEMSGICON.OLEMSGICON_INFO);
 
             string fileName = "SynEx.json";
             string filePath = Path.Combine(jsonCommunicator.GetDefaultPath(), fileName);
+
+            bool isProjectRegistered = false; // Flag to track if the project is registered in the JSON file
 
             if (File.Exists(filePath))
             {
@@ -80,40 +84,22 @@ namespace SynEx
                     // Check if the directory exists
                     if (Directory.Exists(selectedPath))
                     {
-                        Extract1Butt.IsEnabled = true;
-                        Extract2Butt.IsEnabled = true;
-                        Extract3Butt.IsEnabled = true;
-                        Extract4Butt.IsEnabled = true;
-                        ExtractFolderStructureTreeButton.IsEnabled = true;
-                    }
-                    else
-                    {
-                        // If the directory doesn't exist, disable the buttons
-                        DisableButtons();
+                        isProjectRegistered = true; // Project is registered in the JSON file
                     }
                 }
-                else
-                {
-                    DisableButtons();
-                }
             }
-            else
-            {
-                DisableButtons();
-            }
+
+            // Enable or disable the buttons based on the project registration status
+            Extract1Butt.IsEnabled = isProjectRegistered;
+            Extract2Butt.IsEnabled = isProjectRegistered;
+            Extract3Butt.IsEnabled = isProjectRegistered;
+            Extract4Butt.IsEnabled = isProjectRegistered;
+            ExtractFolderStructureTreeButton.IsEnabled = isProjectRegistered;
 
             // Debug output
             System.Diagnostics.Debug.WriteLine($"Current Project Name: {currentProjectName}");
             System.Diagnostics.Debug.WriteLine($"File Path: {filePath}");
             System.Diagnostics.Debug.WriteLine($"Buttons State - Extract1: {Extract1Butt.IsEnabled}, Extract2: {Extract2Butt.IsEnabled}, Extract3: {Extract3Butt.IsEnabled}, Extract4: {Extract4Butt.IsEnabled}, ExtractFolderStructureTree: {ExtractFolderStructureTreeButton.IsEnabled}");
-        }
-        private void DisableButtons()
-        {
-            Extract1Butt.IsEnabled = false;
-            Extract2Butt.IsEnabled = false;
-            Extract3Butt.IsEnabled = false;
-            Extract4Butt.IsEnabled = false;
-            ExtractFolderStructureTreeButton.IsEnabled = false;
         }
         private async void Extract1Click(object sender, RoutedEventArgs e)
         {
@@ -153,9 +139,9 @@ namespace SynEx
         {
             await DataManager.SaveCoordinatorAsync(action);
         }
+        
         // You also need to implement the other events of IVsSolutionEvents, 
         // you can leave them empty if you don't need them
-
         public int OnAfterCloseSolution(object pUnkReserved) => VSConstants.S_OK;
         public int OnAfterLoadProject(IVsHierarchy pStubHierarchy, IVsHierarchy pRealHierarchy) => VSConstants.S_OK;
         public int OnAfterOpenProject(IVsHierarchy pHierarchy, int fAdded) => VSConstants.S_OK;
@@ -165,5 +151,9 @@ namespace SynEx
         public int OnQueryCloseProject(IVsHierarchy pHierarchy, int fRemoving, ref int pfCancel) => VSConstants.S_OK;
         public int OnQueryCloseSolution(object pUnkReserved, ref int pfCancel) => VSConstants.S_OK;
         public int OnQueryUnloadProject(IVsHierarchy pRealHierarchy, ref int pfCancel) => VSConstants.S_OK;
+        public int OnAfterMergeSolution(object pUnkReserved)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
