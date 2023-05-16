@@ -1,4 +1,3 @@
-![Info]([https://user-images.githubusercontent.com/6715232/236376038-fde22256-4317-4223-b3f3-987b3f546aca.png](https://github.com/jojomondag/PLH/blob/main/Images/Image1.png))
 # PLH
 Programmers Little Helper
 
