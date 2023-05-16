@@ -56,17 +56,20 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button x:Name="ExtractFolderStructureTreeButton" Width="295" Height="28" Click="ExtractFolderStructureClick" IsEnabled="False">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="C:\Users\Josef\Documents\GitHub\PLH\SynEx\Resources\ConvertFolderToBranch.png" Width="16" Height="16" Margin="0,0,5,0" />
-                    <TextBlock Text="Extract folderstructure tree" VerticalAlignment="Center" />
-                </StackPanel>
+            <Button Click="ExtractFolderStructureClick" Width="295" Height="28" x:Name="ExtractFolderStructureTreeButton" IsEnabled="False">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="FontSize" Value="9" />
                     </Style>
                 </Button.Style>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="C:\Users\Josef\Documents\GitHub\PLH\SynEx\Resources\ConvertFolderToBranch.png" Width="16" Height="16" Margin="0,0,5,0" />
+                    <TextBlock>
+            Extract folderstructure tree
+                    </TextBlock>
+                </StackPanel>
             </Button>
+
         </StackPanel>
     </Grid>
 </UserControl>

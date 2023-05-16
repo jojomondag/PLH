@@ -65,7 +65,6 @@ namespace SynEx
             JSONCommunicator jsonCommunicator = new JSONCommunicator();
 
             string currentProjectName = DTEProvider.GetActiveProjectName();
-            MessageHelper.ShowMessage("JOJO" + currentProjectName, OLEMSGICON.OLEMSGICON_INFO);
 
             string fileName = "SynEx.json";
             string filePath = Path.Combine(jsonCommunicator.GetDefaultPath(), fileName);
@@ -95,11 +94,6 @@ namespace SynEx
             Extract3Butt.IsEnabled = isProjectRegistered;
             Extract4Butt.IsEnabled = isProjectRegistered;
             ExtractFolderStructureTreeButton.IsEnabled = isProjectRegistered;
-
-            // Debug output
-            System.Diagnostics.Debug.WriteLine($"Current Project Name: {currentProjectName}");
-            System.Diagnostics.Debug.WriteLine($"File Path: {filePath}");
-            System.Diagnostics.Debug.WriteLine($"Buttons State - Extract1: {Extract1Butt.IsEnabled}, Extract2: {Extract2Butt.IsEnabled}, Extract3: {Extract3Butt.IsEnabled}, Extract4: {Extract4Butt.IsEnabled}, ExtractFolderStructureTree: {ExtractFolderStructureTreeButton.IsEnabled}");
         }
         private async void Extract1Click(object sender, RoutedEventArgs e)
         {
