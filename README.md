@@ -1,6 +1,8 @@
 # PLH
 Programmers Little Helper
 
+https://marketplace.visualstudio.com/items?itemName=JosefNobach.SynEx
+
 ![Alt Text](https://raw.githubusercontent.com/jojomondag/PLH/main/Images/Image1.png)
 
 # SynEx: 
