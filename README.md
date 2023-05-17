@@ -17,6 +17,6 @@ Customizable extraction: function names, parameters, return types, and access mo
 Syntax tree saved outside the main solution folder.
 Automatic code copy to clipboardExtraction Types.
 
-Dont just have a good day. Have a Great Day!
-
 ![Alt Text](https://raw.githubusercontent.com/jojomondag/PLH/main/Images/Image3.png)
+
+Dont just have a good day. Have a Great Day!
